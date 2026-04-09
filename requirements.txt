@@ -1,0 +1,26 @@
+# ── Core ML ───────────────────────────────────────────────────────────────────
+torch>=2.2.0
+transformers>=4.40.0
+peft>=0.10.0
+accelerate>=0.29.0
+
+# ── Cuantización (GPU, opcional pero recomendado con 4GB VRAM) ────────────────
+bitsandbytes>=0.43.0
+
+# ── Visualización y análisis ──────────────────────────────────────────────────
+matplotlib>=3.8.0
+numpy>=1.26.0
+
+# ── Notebook ──────────────────────────────────────────────────────────────────
+jupyter>=1.0.0
+ipykernel>=6.29.0
+
+# ── Utilidades ────────────────────────────────────────────────────────────────
+tqdm>=4.66.0
+
+# ── Opcional: Unsloth (acelera entrenamiento en GPU, instalar manualmente) ────
+# Ver instrucciones en: https://github.com/unslothai/unsloth
+# pip install "unsloth[cu121-ampere-torch240] @ git+https://github.com/unslothai/unsloth.git"
+
+# ── Opcional: TRL (utilidades adicionales de RL para LLMs) ───────────────────
+# trl>=0.8.0
