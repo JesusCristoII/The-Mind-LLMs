@@ -12,7 +12,6 @@ GRPO es preferible aquí porque:
 import torch
 import torch.nn.functional as F
 import logging
-import warnings
 from typing import Optional
 from dataclasses import dataclass
 
@@ -25,24 +24,14 @@ from rewards import (
 logger = logging.getLogger(__name__)
 
 
-def _configure_training_warnings() -> None:
-    """Oculta warnings conocidos y ruidosos de dependencias externas durante training."""
-    warnings.filterwarnings(
-        "ignore",
-        message=r".*AttentionMaskConverter.*deprecated.*",
-        category=FutureWarning,
-        module=r"transformers\.modeling_attn_mask_utils",
-    )
-
-
 @dataclass
 class TrainerConfig:
     """Hiperparámetros del entrenamiento RL."""
     # General
     num_episodes: int = 500
-    num_levels: int = 8              # niveles del juego a entrenar
+    num_levels: int = 3              # niveles del juego a entrenar
     group_size: int = 4              # tamaño del grupo para GRPO
-    checkpoint_every: int = 25
+    checkpoint_every: int = 50
 
     # Optimización
     lr: float = 1e-5
@@ -87,14 +76,17 @@ class GRPOTrainer:
 
         # Un optimizer por agente (o compartido si shared LoRA)
         if optimizers is None:
-            self.optimizers = [
-                torch.optim.AdamW(
-                    agent.model.parameters(),
-                    lr=config.lr,
-                    weight_decay=0.01,
-                )
-                for agent in agents
-            ]
+            optimizers_by_model = {}
+            self.optimizers = []
+            for agent in agents:
+                model_id = id(agent.model)
+                if model_id not in optimizers_by_model:
+                    optimizers_by_model[model_id] = torch.optim.AdamW(
+                        agent.model.parameters(),
+                        lr=config.lr,
+                        weight_decay=0.01,
+                    )
+                self.optimizers.append(optimizers_by_model[model_id])
         else:
             self.optimizers = optimizers
 
@@ -120,8 +112,7 @@ class GRPOTrainer:
                 for agent in self.agents:
                     if state.hands[agent.player_id]:  # si tiene cartas
                         obs = self.env.get_observation(agent.player_id)
-                        with torch.set_grad_enabled(training):
-                            decision = agent.generate_action(obs)
+                        decision = agent.generate_action(obs)  # always no_grad internally
 
                         if decision["message"]:
                             self.env.send_message(agent.player_id, decision["message"])
@@ -151,8 +142,7 @@ class GRPOTrainer:
                     continue
 
                 obs = self.env.get_observation(agent.player_id)
-                with torch.set_grad_enabled(training):
-                    decision = agent.generate_action(obs)
+                decision = agent.generate_action(obs)  # always no_grad internally
 
                 if decision["action"] == "play":
                     card = agent.get_card_to_play(obs)
@@ -229,61 +219,76 @@ class GRPOTrainer:
         advantage: float,
     ) -> Optional[torch.Tensor]:
         """
-        Calcula el policy gradient loss para una transición (GRPO/PPO simplificado).
+        Calcula el policy gradient loss para una transición (GRPO simplificado).
 
-        Loss = -advantage * log_prob(output | prompt)
-             + kl_coeff * KL(pi_theta || pi_ref)
-             - entropy_bonus * H(pi_theta)
+        Loss = -advantage * log_prob(output | prompt) - entropy_bonus * H(pi)
+
+        IMPORTANTE: No pasamos `labels` al modelo para evitar que HuggingFace
+        compute la cross-entropy internamente con operaciones in-place que
+        corrompen el grafo de autograd. Calculamos el loss manualmente.
         """
         tokenizer = agent.tokenizer
         model = agent.model
 
-        # Tokenizar prompt + output
-        full_text = prompt + output
-        tokens = tokenizer(
-            full_text,
-            return_tensors="pt",
-            truncation=True,
-            max_length=1024,
-        ).to(self.config.device)
-
-        prompt_tokens = tokenizer(
+        # Tokenizar prompt + output por separado para conocer el corte
+        prompt_ids = tokenizer(
             prompt,
             return_tensors="pt",
             truncation=True,
             max_length=768,
-        ).to(self.config.device)
-        prompt_len = prompt_tokens["input_ids"].shape[1]
+            add_special_tokens=False,
+        )["input_ids"]
+        output_ids = tokenizer(
+            output,
+            return_tensors="pt",
+            truncation=True,
+            max_length=200,
+            add_special_tokens=False,
+        )["input_ids"]
 
-        if tokens["input_ids"].shape[1] <= prompt_len:
+        if output_ids.shape[1] == 0:
             return None
 
-        # Forward pass
-        outputs = model(**tokens, labels=tokens["input_ids"])
+        prompt_len = prompt_ids.shape[1]
+        input_ids = torch.cat([prompt_ids, output_ids], dim=1).to(self.config.device)
+        attention_mask = torch.ones_like(input_ids)
 
-        # Log-probs solo sobre los tokens generados (no el prompt)
-        logits = outputs.logits[:, prompt_len-1:-1, :]  # [1, gen_len, vocab]
-        target_ids = tokens["input_ids"][:, prompt_len:]  # [1, gen_len]
+        # Forward pass limpio SIN labels — evita operaciones in-place internas
+        model.train()
+        out = model(
+            input_ids=input_ids,
+            attention_mask=attention_mask,
+            use_cache=False,
+            return_dict=True,
+        )
+        logits = out.logits.float().clone()  # [1, seq_len, vocab]
 
-        log_probs = F.log_softmax(logits, dim=-1)
+        # Solo los logits que predicen tokens del output (shifted by 1)
+        # logits[:, prompt_len-1:-1] predice los tokens output_ids[:, 0:]
+        gen_logits = logits[:, prompt_len - 1:-1, :].float()  # [1, gen_len, vocab]
+        target_ids = input_ids[:, prompt_len:].to(self.config.device)   # [1, gen_len]
+
+        if gen_logits.shape[1] == 0:
+            return None
+
+        # Log-probs manualmente (sin in-place)
+        log_probs = F.log_softmax(gen_logits, dim=-1)
         token_log_probs = log_probs.gather(
             2, target_ids.unsqueeze(-1)
         ).squeeze(-1)  # [1, gen_len]
 
-        # Log-prob media de la secuencia generada
         seq_log_prob = token_log_probs.mean()
 
         # Policy gradient loss
-        pg_loss = -advantage * seq_log_prob
+        adv_tensor = torch.tensor(advantage, dtype=torch.float32, device=self.config.device)
+        pg_loss = -adv_tensor * seq_log_prob
 
-        # Entropy bonus (aproximación: negativa de la entropía media)
-        probs = F.softmax(logits, dim=-1)
+        # Entropy bonus
+        probs = F.softmax(gen_logits, dim=-1)
         entropy = -(probs * log_probs).sum(dim=-1).mean()
         entropy_loss = -self.config.entropy_bonus * entropy
 
-        total_loss = pg_loss + entropy_loss
-
-        return total_loss
+        return pg_loss + entropy_loss
 
     # ─── Actualización de pesos ───────────────────────────────────────────────
 
@@ -325,9 +330,13 @@ class GRPOTrainer:
                         num_updates[pid] += 1
 
         # Aplicar gradientes
+        stepped_optimizers = set()
         for agent in self.agents:
             pid = agent.player_id
             opt = self.optimizers[pid]
+
+            if id(opt) in stepped_optimizers:
+                continue
 
             torch.nn.utils.clip_grad_norm_(
                 agent.model.parameters(),
@@ -335,6 +344,7 @@ class GRPOTrainer:
             )
             opt.step()
             opt.zero_grad()
+            stepped_optimizers.add(id(opt))
 
             avg_loss = (
                 total_loss_per_agent[pid] / num_updates[pid]
@@ -359,8 +369,6 @@ class GRPOTrainer:
             verbose: imprimir progreso
         """
         from utils import save_checkpoint
-
-        _configure_training_warnings()
 
         config = self.config
         level_schedule = self._build_level_schedule()

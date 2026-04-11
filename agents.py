@@ -288,6 +288,9 @@ def load_base_model(
         load_kwargs["attn_implementation"] = "flash_attention_2"
 
     model = AutoModelForCausalLM.from_pretrained(model_name, **load_kwargs)
+    model.config.use_cache = False
+    if hasattr(model, "generation_config"):
+        model.generation_config.use_cache = False
     model.eval()
 
     logger.info(f"Modelo cargado. Parámetros: {model.num_parameters():,}")
@@ -338,6 +341,9 @@ def create_agents(
 
     if shared_lora:
         peft_model = get_peft_model(model, lora_config)
+        peft_model.config.use_cache = False
+        if hasattr(peft_model, "generation_config"):
+            peft_model.generation_config.use_cache = False
         peft_model.print_trainable_parameters()
         agents = [
             TheMindAgent(i, model=peft_model, tokenizer=tokenizer, device=device)
@@ -348,6 +354,9 @@ def create_agents(
         agents = []
         for i in range(num_players):
             peft_model = get_peft_model(model, lora_config)
+            peft_model.config.use_cache = False
+            if hasattr(peft_model, "generation_config"):
+                peft_model.generation_config.use_cache = False
             agents.append(
                 TheMindAgent(i, model=peft_model, tokenizer=tokenizer, device=device)
             )
