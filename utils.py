@@ -7,6 +7,7 @@ import os
 import re
 import time
 import logging
+import torch
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Optional
@@ -232,33 +233,174 @@ class LanguageAnalyzer:
 
 # ─── Checkpoints ──────────────────────────────────────────────────────────────
 
-def save_checkpoint(agents: list, metrics: TrainingMetrics, episode: int,
-                    output_dir: str = "checkpoints"):
-    """Guarda los pesos LoRA de cada agente y las métricas."""
-    Path(output_dir).mkdir(exist_ok=True)
+def save_checkpoint(
+    agents: list,
+    metrics: TrainingMetrics,
+    episode: int,
+    output_dir: str = "checkpoints",
+    optimizers: list = None,
+):
+    """
+    Guarda los pesos LoRA de cada agente, las métricas y (opcionalmente)
+    el estado de los optimizadores para poder reanudar el entrenamiento exacto.
+
+    Estructura en disco:
+        checkpoints/
+        └── episode_N/
+            ├── agent_0/
+            │   ├── adapter_config.json
+            │   └── adapter_model.safetensors
+            ├── agent_1/ ...
+            ├── optimizer_0.pt   (si se pasan optimizadores)
+            ├── training_state.json
+            └── metrics.json
+    """
+    checkpoint_dir = Path(output_dir) / f"episode_{episode}"
+    checkpoint_dir.mkdir(parents=True, exist_ok=True)
+
+    # Guardar adaptadores LoRA de cada agente
     for i, agent in enumerate(agents):
-        agent_dir = os.path.join(output_dir, f"episode_{episode}", f"agent_{i}")
-        agent.model.save_pretrained(agent_dir)
-        print(f"Agente {i} guardado en {agent_dir}")
+        agent_dir = checkpoint_dir / f"agent_{i}"
+        agent.model.save_pretrained(str(agent_dir))
 
-    metrics_path = os.path.join(output_dir, f"episode_{episode}", "metrics.json")
-    with open(metrics_path, "w") as f:
-        json.dump({
-            "episode":    episode,
-            "win_rate":   metrics.get_win_rate(50),
-            "avg_reward": float(np.mean(metrics.avg_rewards[-50:])) if metrics.avg_rewards else 0,
-            "mistakes":   float(np.mean(metrics.mistake_rates[-50:])) if metrics.mistake_rates else 0,
-        }, f, indent=2)
-    print(f"Checkpoint ep {episode} guardado.")
+    # Guardar estado de los optimizadores (permite reanudar con el mismo momentum)
+    if optimizers:
+        for i, opt in enumerate(optimizers):
+            opt_path = checkpoint_dir / f"optimizer_{i}.pt"
+            torch.save(opt.state_dict(), str(opt_path))
+
+    # Estado del entrenamiento (para saber desde dónde reanudar)
+    state = {
+        "episode":      episode,
+        "num_agents":   len(agents),
+        "shared_lora":  len(set(id(a.model) for a in agents)) == 1,
+    }
+    with open(checkpoint_dir / "training_state.json", "w") as f:
+        json.dump(state, f, indent=2)
+
+    # Métricas en ese punto
+    metrics_data = {
+        "episode":    episode,
+        "win_rate":   metrics.get_win_rate(50),
+        "avg_reward": float(np.mean(metrics.avg_rewards[-50:])) if metrics.avg_rewards else 0,
+        "mistakes":   float(np.mean(metrics.mistake_rates[-50:])) if metrics.mistake_rates else 0,
+        # Historial completo para poder restaurar las gráficas
+        "win_rates":      metrics.win_rates,
+        "avg_rewards":    metrics.avg_rewards,
+        "mistake_rates":  metrics.mistake_rates,
+    }
+    with open(checkpoint_dir / "metrics.json", "w") as f:
+        json.dump(metrics_data, f, indent=2)
+
+    print(f"Checkpoint guardado en: {checkpoint_dir}")
+    for i in range(len(agents)):
+        size = sum(
+            p.stat().st_size for p in (checkpoint_dir / f"agent_{i}").rglob("*") if p.is_file()
+        )
+        print(f"  Agente {i}: {size / 1e6:.2f} MB")
 
 
-def load_checkpoint(agents: list, episode: int, output_dir: str = "checkpoints"):
-    """Carga los pesos LoRA desde un checkpoint."""
-    from peft import PeftModel
+def load_checkpoint(
+    agents: list,
+    episode: int,
+    output_dir: str = "checkpoints",
+    optimizers: list = None,
+) -> TrainingMetrics:
+    """
+    Carga los pesos LoRA desde un checkpoint y restaura las métricas.
+    Devuelve el objeto TrainingMetrics restaurado para continuar el historial.
+
+    Uso típico:
+        metrics = load_checkpoint(agents, episode=100, optimizers=optimizers)
+        trainer.episode_count = 100  # reanudar desde aquí
+    """
+    checkpoint_dir = Path(output_dir) / f"episode_{episode}"
+
+    if not checkpoint_dir.exists():
+        raise FileNotFoundError(f"No se encontró checkpoint en: {checkpoint_dir}")
+
+    # Leer estado guardado
+    with open(checkpoint_dir / "training_state.json") as f:
+        state = json.load(f)
+
+    shared_lora = state.get("shared_lora", False)
+
+    # Cargar adaptadores LoRA
+    # set_adapter activa el adaptador ya existente con los pesos del checkpoint
     for i, agent in enumerate(agents):
-        agent_dir = os.path.join(output_dir, f"episode_{episode}", f"agent_{i}")
-        if os.path.exists(agent_dir):
-            agent.model.load_adapter(agent_dir, adapter_name="default")
-            print(f"Agente {i} cargado desde {agent_dir}")
-        else:
-            print(f"No se encontró checkpoint para agente {i}")
+        agent_dir = checkpoint_dir / f"agent_{i}"
+        if not agent_dir.exists():
+            print(f"  AVISO: no se encontró checkpoint para agente {i}, se mantienen pesos actuales.")
+            continue
+
+        if shared_lora and i > 0:
+            # Con LoRA compartida todos los agentes usan el mismo modelo,
+            # así que solo hay que cargar una vez
+            continue
+
+        # load_adapter carga los pesos en el adaptador 'default' ya inicializado
+        agent.model.load_adapter(str(agent_dir), adapter_name="default")
+        agent.model.set_adapter("default")
+        print(f"  Agente {i} cargado desde {agent_dir}")
+
+    if shared_lora:
+        print("  (LoRA compartida: todos los agentes usan los mismos pesos)")
+
+    # Cargar estado de los optimizadores
+    if optimizers:
+        for i, opt in enumerate(optimizers):
+            opt_path = checkpoint_dir / f"optimizer_{i}.pt"
+            if opt_path.exists():
+                opt.load_state_dict(torch.load(str(opt_path), map_location="cpu"))
+                print(f"  Optimizador {i} restaurado")
+            else:
+                print(f"  AVISO: no se encontró estado del optimizador {i}")
+
+    # Restaurar métricas
+    metrics = TrainingMetrics()
+    metrics_path = checkpoint_dir / "metrics.json"
+    if metrics_path.exists():
+        with open(metrics_path) as f:
+            data = json.load(f)
+        metrics.win_rates     = data.get("win_rates", [])
+        metrics.avg_rewards   = data.get("avg_rewards", [])
+        metrics.mistake_rates = data.get("mistake_rates", [])
+        metrics.episodes      = list(range(len(metrics.win_rates)))
+        print(f"  Métricas restauradas ({len(metrics.episodes)} episodios previos)")
+
+    print(f"\nCheckpoint ep {episode} cargado. Listo para reanudar.")
+    return metrics
+
+
+def list_checkpoints(output_dir: str = "checkpoints") -> list:
+    """Lista todos los checkpoints disponibles con sus métricas."""
+    base = Path(output_dir)
+    if not base.exists():
+        print("No hay checkpoints guardados todavía.")
+        return []
+
+    checkpoints = []
+    for ep_dir in sorted(base.glob("episode_*"), key=lambda p: int(p.name.split("_")[1])):
+        ep = int(ep_dir.name.split("_")[1])
+        metrics_path = ep_dir / "metrics.json"
+        info = {"episode": ep, "path": str(ep_dir)}
+        if metrics_path.exists():
+            with open(metrics_path) as f:
+                m = json.load(f)
+            info.update({
+                "win_rate":   m.get("win_rate", 0),
+                "avg_reward": m.get("avg_reward", 0),
+                "mistakes":   m.get("mistakes", 0),
+            })
+        checkpoints.append(info)
+
+    print(f"{'Episodio':>10} {'Win rate':>10} {'Reward':>10} {'Errores':>10}")
+    print("-" * 44)
+    for c in checkpoints:
+        print(
+            f"{c['episode']:>10d} "
+            f"{c.get('win_rate', 0):>10.2%} "
+            f"{c.get('avg_reward', 0):>10.2f} "
+            f"{c.get('mistakes', 0):>10.2f}"
+        )
+    return checkpoints

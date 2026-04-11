@@ -17,8 +17,8 @@ class GameState:
     hands: dict = field(default_factory=dict)       # {player_id: [cartas]}
     played_cards: list = field(default_factory=list) # cartas jugadas en orden
     table_top: int = 0                               # última carta jugada
-    lives: int = 3
-    stars: int = 1                                   # comodines para parar y votar
+    lives: int = 1
+    stars: int = 0                                 # comodines para parar y votar
     round_over: bool = False
     game_over: bool = False
     won: bool = False
@@ -59,7 +59,7 @@ class TheMindEnv:
         self.num_players = num_players
         self.state = None
 
-    def reset(self, level: int = 1) -> GameState:
+    def reset(self, level: int = 1, lives: int = 1) -> GameState:
         """Inicia una nueva ronda."""
         deck = list(range(1, self.MAX_CARD + 1))
         random.shuffle(deck)
@@ -75,8 +75,8 @@ class TheMindEnv:
             hands=hands,
             played_cards=[],
             table_top=0,
-            lives=3,
-            stars=1,
+            lives=lives,
+            stars=0,
             cards_per_player=cards_per_player,
         )
         logger.info(f"Nueva ronda. Nivel {level}. Manos: {hands}")
@@ -102,7 +102,7 @@ class TheMindEnv:
         if message and message.strip():
             self.state.messages.append({
                 "player": player_id,
-                "text": message.strip()[:200],  # limitar longitud
+                "text": message.strip()[:1024],  # limitar longitud
             })
 
     def play_card(self, player_id: int, card: int) -> dict:

@@ -12,6 +12,7 @@ GRPO es preferible aquí porque:
 import torch
 import torch.nn.functional as F
 import logging
+import warnings
 from typing import Optional
 from dataclasses import dataclass
 
@@ -24,14 +25,24 @@ from rewards import (
 logger = logging.getLogger(__name__)
 
 
+def _configure_training_warnings() -> None:
+    """Oculta warnings conocidos y ruidosos de dependencias externas durante training."""
+    warnings.filterwarnings(
+        "ignore",
+        message=r".*AttentionMaskConverter.*deprecated.*",
+        category=FutureWarning,
+        module=r"transformers\.modeling_attn_mask_utils",
+    )
+
+
 @dataclass
 class TrainerConfig:
     """Hiperparámetros del entrenamiento RL."""
     # General
     num_episodes: int = 500
-    num_levels: int = 3              # niveles del juego a entrenar
+    num_levels: int = 8              # niveles del juego a entrenar
     group_size: int = 4              # tamaño del grupo para GRPO
-    checkpoint_every: int = 50
+    checkpoint_every: int = 25
 
     # Optimización
     lr: float = 1e-5
@@ -348,6 +359,8 @@ class GRPOTrainer:
             verbose: imprimir progreso
         """
         from utils import save_checkpoint
+
+        _configure_training_warnings()
 
         config = self.config
         level_schedule = self._build_level_schedule()

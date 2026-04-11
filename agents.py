@@ -3,6 +3,7 @@ agents.py — Agentes LLM para The Mind
 Usa modelos pequeños (~1-3B) con LoRA para caber en 4GB VRAM o 12GB RAM.
 """
 import json
+import ast
 import re
 import logging
 from typing import Optional
@@ -21,6 +22,7 @@ SYSTEM_PROMPT = """Eres un jugador del juego The Mind. Las reglas son:
 - Cada turno puedes enviar un mensaje corto a los demás Y/O jugar una carta.
 - Juega tu carta cuando creas que es el momento adecuado.
 - Si juegas fuera de orden, el equipo pierde una vida.
+- Responde SIEMPRE con JSON válido, sin texto adicional antes ni después
 
 Tu objetivo: coordinaros para jugar TODAS las cartas en orden sin errores.
 Habla libremente pero SIN revelar tu número exacto ni ninguna operación matemática que lo descifre."""
@@ -33,20 +35,21 @@ ACTION_PROMPT = """Estado actual:
 - Estrellas: {stars}
 - Mensajes recientes: {messages}
 
-Responde SIEMPRE en este formato JSON exacto:
+Responde SIEMPRE en este formato JSON exacto con tu mensaje, acción y razonamiento que hayas deducido y no pongas nada más:
 {{
   "message": "mensaje corto para los demás (o vacío si no tienes nada que decir)",
   "action": "wait" o "play" o "star",
   "reasoning": "por qué tomas esta decisión (interno, no lo ven)"
 }}
 
-Reglas: no digas tu número. Puedes expresar urgencia, duda, confianza."""
+Reglas: no digas tu número. Puedes expresar urgencia, duda, confianza, o lo que veas conveniente siempere
+que no digas expresamente tu número ni nada que pueda llevar a una deducción exacta del mismo."""
 
 
 def format_messages(messages: list) -> str:
     if not messages:
         return "(ninguno)"
-    return " | ".join([f"J{m['player']}: {m['text']}" for m in messages[-5:]])
+    return " | ".join([f"J{m['player']}: {m['text']}" for m in messages[-10:]])
 
 
 # ─── Clase agente ─────────────────────────────────────────────────────────────
@@ -64,7 +67,7 @@ class TheMindAgent:
         tokenizer=None,
         lora_config=None,
         device: str = "cpu",
-        max_new_tokens: int = 200,
+        max_new_tokens: int = 512,
     ):
         self.player_id = player_id
         self.model = model
@@ -107,7 +110,7 @@ class TheMindAgent:
             prompt,
             return_tensors="pt",
             truncation=True,
-            max_length=1024,
+            max_length=512,
         ).to(self.device)
 
         with torch.inference_mode():
@@ -115,7 +118,8 @@ class TheMindAgent:
                 **inputs,
                 max_new_tokens=self.max_new_tokens,
                 do_sample=True,
-                temperature=0.7,
+                repetition_penalty=1.2,
+                temperature=0.3,    # 0.3 para más determinismo, 0.7 para más diversidad
                 top_p=0.9,
                 pad_token_id=self.tokenizer.eos_token_id,
             )
@@ -125,6 +129,7 @@ class TheMindAgent:
         generated = self.tokenizer.decode(
             output_ids[0][input_len:], skip_special_tokens=True
         )
+        # print(f"Agente {self.player_id} generó: {generated}")
 
         parsed = self._parse_output(generated, obs)
         parsed["raw_output"] = generated
@@ -141,24 +146,25 @@ class TheMindAgent:
 
     def _parse_output(self, text: str, obs: dict) -> dict:
         """Parsea la salida JSON del modelo. Fallback a heurísticas."""
-        # Intentar extraer JSON
-        json_match = re.search(r'\{.*?\}', text, re.DOTALL)
-        if json_match:
-            try:
-                data = json.loads(json_match.group())
-                action = data.get("action", "wait").strip().lower()
-                if action not in ("wait", "play", "star"):
-                    action = "wait"
-                return {
-                    "message":   data.get("message", ""),
-                    "action":    action,
-                    "reasoning": data.get("reasoning", ""),
-                }
-            except json.JSONDecodeError:
-                pass
+        # Intentar parsear JSON válido aunque venga con texto extra alrededor.
+        # print(text)
+        data = self._extract_structured_output(text)
+        # print(data)
+        if data is not None:
+            action = str(data.get("action", "wait")).strip().lower()
+            if action not in ("wait", "play", "star"):
+                action = "wait"
+            return {
+                "message": str(data.get("message", ""))[:200],
+                "action": action,
+                "reasoning": str(data.get("reasoning", ""))[:300],
+            }
 
         # Fallback heurístico
-        logger.warning(f"Agente {self.player_id}: no pudo parsear JSON. Usando heurística.")
+        logger.debug(
+            "Agente %s: no pudo parsear JSON. Usando heuristica.",
+            self.player_id,
+        )
         action = "wait"
         if "play" in text.lower() or "juego" in text.lower() or "jugar" in text.lower():
             action = "play"
@@ -172,6 +178,53 @@ class TheMindAgent:
             "action":    action,
             "reasoning": text[:200],
         }
+
+    def _extract_structured_output(self, text: str) -> Optional[dict]:
+        """Extrae un dict estilo JSON del texto generado por el modelo."""
+        # 1) Bloques markdown tipo ```json ... ```
+        fenced = re.search(r"```(?:json)?\s*(\{[\s\S]*?\})\s*```", text, re.IGNORECASE)
+        if fenced:
+            parsed = self._parse_dict_like(fenced.group(1))
+            if parsed is not None:
+                return parsed
+
+        # 2) JSONDecoder sobre cualquier subcadena que empiece con '{'
+        decoder = json.JSONDecoder()
+        for idx, ch in enumerate(text):
+            if ch != "{":
+                continue
+            snippet = text[idx:]
+            try:
+                parsed, _ = decoder.raw_decode(snippet)
+            except json.JSONDecodeError:
+                continue
+            if isinstance(parsed, dict):
+                return parsed
+
+        # 3) Fallback por regex + parser tolerante
+        json_match = re.search(r"\{[\s\S]*\}", text)
+        if json_match:
+            return self._parse_dict_like(json_match.group())
+
+        return None
+
+    def _parse_dict_like(self, text: str) -> Optional[dict]:
+        """Parsea texto de diccionario usando JSON y luego ast.literal_eval."""
+        try:
+            data = json.loads(text)
+            if isinstance(data, dict):
+                return data
+        except json.JSONDecodeError:
+            pass
+
+        try:
+            data = ast.literal_eval(text)
+            if isinstance(data, dict):
+                return data
+        except (SyntaxError, ValueError):
+            pass
+
+        return None
 
     def get_card_to_play(self, obs: dict) -> Optional[int]:
         """Devuelve la carta mínima de la mano (la única válida a jugar)."""

@@ -21,6 +21,7 @@ tqdm>=4.66.0
 # ── Opcional: Unsloth (acelera entrenamiento en GPU, instalar manualmente) ────
 # Ver instrucciones en: https://github.com/unslothai/unsloth
 # pip install "unsloth[cu121-ampere-torch240] @ git+https://github.com/unslothai/unsloth.git"
+unsloth
 
 # ── Opcional: TRL (utilidades adicionales de RL para LLMs) ───────────────────
 # trl>=0.8.0
