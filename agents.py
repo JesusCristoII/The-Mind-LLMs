@@ -5,6 +5,7 @@ Usa modelos pequeños (~1-3B) con LoRA para caber en 4GB VRAM o 12GB RAM.
 import json
 import ast
 import re
+import copy
 import logging
 from typing import Optional
 import torch
@@ -113,9 +114,17 @@ class TheMindAgent:
             max_length=512,
         ).to(self.device)
 
+        # Evita el warning de transformers cuando el modelo trae max_length
+        # en su generation_config y además usamos max_new_tokens.
+        gen_config = None
+        if hasattr(self.model, "generation_config") and self.model.generation_config is not None:
+            gen_config = copy.deepcopy(self.model.generation_config)
+            gen_config.max_length = None
+
         with torch.inference_mode():
             output_ids = self.model.generate(
                 **inputs,
+                generation_config=gen_config,
                 max_new_tokens=self.max_new_tokens,
                 do_sample=True,
                 repetition_penalty=1.2,
