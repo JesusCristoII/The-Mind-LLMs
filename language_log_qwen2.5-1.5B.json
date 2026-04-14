@@ -1,0 +1,380 @@
+[
+  {
+    "episode": 0,
+    "player": 0,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\":\"espero pacientemente hasta la última oportunidad\"}",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 1,
+    "message": "yo también espero paciente",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 2,
+    "message": "{\"message\": \"voy ya, soy el primero\", action:\"play\", reasoning\":\"yo lejos siempre tengo algo importa",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 3,
+    "message": "{\"message\": \"tengo cuidado ahora, voy despacio\", action: \"wait\", reasoning\":\"espero tranquilizado mi",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 0,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\":\"después de todos vosotros, tranquilo yo\"]",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 1,
+    "message": "{\"message\": \"y yo justo después\", action: \"play\", reasoning\":\"puede ser que yo sea uno de los primer",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 0,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\":\"casi llego yo último, tranquilo yo.\"]",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 1,
+    "message": "{\"message\": \"soy bastante pronto, deseo mucho evitar largos espera.\", action: \"play\", reasoning\":\"ba",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 0,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\":\"espero calmadamente mientras quedan muchos otros por det",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 1,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\":\"espero tranquilamente, aún queda muchísimo por detrás\"]",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 0,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\":\"espero pacientemente hasta la última oportunidad\"}",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 1,
+    "message": "{\"message\": \"espero tranquilo, todavía falta mucho\", action: \"wait\", reasoning\":\"bastante arriba, tr",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 0,
+    "message": "{\"message\": \"yo espero tranquilo, todavía falta mucho\", action: \"wait\", reasoning\":\"bastante arriba,",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 1,
+    "message": "{\"message\": \"voy muy seguro ya, casi termino el primero\", action:\"play\", reasoning\":\"con seguridad s",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 0,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\":\"espero paciente, tengo algo lejos\"]",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 1,
+    "message": "{\"message\": \"después de todos vosotros, soy el último\", action: \"wait\", reasoning\":\"tengo algo lejan",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 0,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\":\"espero paciente, tengo algo lejano\"]",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 1,
+    "message": "{\"message\": \"puede ser yo justo ahora, voy rápido\", action: \"play\", reasoning\":\"bajo nivel, prisa ne",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 1,
+    "message": "{\"message\": \"y yo también bastante pronto, cuidadoso deseo\", action: \"play\", reasoning\":\"casi llego,",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 1,
+    "message": "{\"message\": \"espero tranquilo, estoy bien bajito\", action: \"wait\", reasoning\":\"no me preocupo demasi",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 1,
+    "message": "{\"message\": \"espero tranquilamente, aún quedan muchos\", action: \"wait\", reasoning\":\"prudente mi comp",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 1,
+    "message": "{\"message\": \"espero tranquilo, todavía queda algo por detrás\", action: \"wait\", reasoning\":\"algo bajo",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 1,
+    "message": "{\"message\": \"espero tranquilo, siguiendo el ritmo mio, aunque podría llegar pronto\", action: \"wait\",",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 0,
+    "player": 1,
+    "message": "{\"message\": \"yo espero calmadamente, seguiré el paso suyo\", action: \"wait\", reasoning\":\"tranquilo, m",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 2,
+    "player": 1,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\":\"espero pacientemente hasta la última oportunidad\"}",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 2,
+    "player": 2,
+    "message": "{\"message\": \"yo espero bastante tranquilo\", action:\"wait\"}",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 2,
+    "player": 3,
+    "message": "{\"message\": \"\", action\": play\", reasoning\":\"voy ya, tengo algo seguro ahora\"}",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 2,
+    "player": 1,
+    "message": "{\"message\": \"y yo justo después, seguid me quedamos todos\", action:\"play\", reasoning\":\"tengo algo mu",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 2,
+    "player": 2,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\":\"después de todo soy yo último siempre\"]",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 2,
+    "player": 1,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\":\"espero paciente mientras voy primero\"]",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 2,
+    "player": 2,
+    "message": "{\"message\": \"puede ser mi turno pronto, estoy muy cerca\", action:\"play\", reasoning\":\"casi puedo sent",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 2,
+    "player": 1,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\":\"espero tranquilamente, aún lejos todavía\"]",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 2,
+    "player": 2,
+    "message": "{\"message\": \"soy yo el siguiente paso por aquí\", action: \"play\", reasoning\": deseo inmediato, sé ráp",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 2,
+    "player": 1,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\":\"espero mucho porque no quiero arriesk}",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 2,
+    "player": 2,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\":\"espero paciente mientras voy primero\"]",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 2,
+    "player": 2,
+    "message": "{\"message\": \"yo también después de vosotros dos, cuidadoso\", action:\"wait\", reasoning\":\"el próximo,",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 2,
+    "player": 1,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\":\"espero tranquilo, no creo tener la primera posición\"]}",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 2,
+    "player": 2,
+    "message": "{\"message\": \"voy ya, esperad bastante\", action: \"play\", reasoning\": tengo algo cercano, pero el rest",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 2,
+    "player": 1,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\":\"espero la oportunidad de seguirme\"}",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 2,
+    "player": 2,
+    "message": "yo también espero mi turno",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 2,
+    "player": 3,
+    "message": "{\"message\": \"\", action\": play\", reasoning\":\"yo soy el último, tranquilo ahora\"}",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 2,
+    "player": 3,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\":\"espero hasta que sea mi vez\"}",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 6,
+    "player": 3,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\": espero algo desde mi lado\"}",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 6,
+    "player": 3,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\": espero algo pronto desde mi lado\"}",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 6,
+    "player": 2,
+    "message": "{\"message\": \"espero bastante tranquilo, voy justo ahora\", action:\"play\", reasoning\":\"voy ya soy yo\"}",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 6,
+    "player": 3,
+    "message": "{\"message\": \"yo también lejos todavía, cuidadito\", action:\"wait\", reasoning\":\"cuidado mucho, tengo a",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 7,
+    "player": 2,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\":\"espero pacientemente mientras me aseguro de estar tranqu",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 7,
+    "player": 3,
+    "message": "{\"message\": \"\", action\": play\", reasoning\":\"voy justo ahora porque tengo la última carta\"}",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 7,
+    "player": 0,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\":\"tengo algo importante esperando\"]",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 7,
+    "player": 1,
+    "message": "{\"message\": \"yo también voy pronto\", action:\"play\", reasoning\":\"después de ti soy yo, lejos pero seg",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 7,
+    "player": 3,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\":\"espero paciente hasta que todos tengan oportunidad\"}",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 8,
+    "player": 3,
+    "message": "{\"message\": \"\", action\": wait\", reasoning\": esperando la última oportunidad\"}",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 8,
+    "player": 0,
+    "message": "{\"message\": \"yo también voy ahora\", action: play}",
+    "card": null,
+    "table_top": 0
+  },
+  {
+    "episode": 8,
+    "player": 0,
+    "message": "{\"message\": \"espero tranquilo\", action: \"wait\", reasoning\": tengo algo por detrás\"}",
+    "card": null,
+    "table_top": 0
+  }
+]

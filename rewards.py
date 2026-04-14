@@ -120,15 +120,19 @@ def episode_reward(
     """
     Reward al final de la ronda/episodio completo.
     Se combina con los rewards por paso para el cálculo GRPO/PPO.
+    
+    Sistema progresivo: recompensas mucho mayores para niveles más altos
+    para incentivar el avance (exponencial con la dificultad).
     """
     if won:
-        base = 10.0 * level          # más reward por niveles difíciles
-        efficiency = max(0, 3 - mistakes) * 2.0  # bonus por pocos errores
-        speed = max(0, 1.0 - total_turns / 100)  # bonus por rapidez
+        # Recompensa exponencial por nivel: nivel 1=20, nivel 2=50, nivel 3=110, etc.
+        base = 20.0 * (level ** 1.5)  # Exponencial con raíz cuadrada
+        efficiency = max(0, 3 - mistakes) * 3.0  # bonus por pocos errores
+        speed = max(0, 1.0 - total_turns / 150)  # bonus por rapidez (más leniente)
         return base + efficiency + speed
     else:
-        # Parcial: recompensar el progreso aunque se pierda
-        return -5.0 + (level - 1) * 1.0 + lives_remaining * 0.5
+        # Parcial: recompensar el progreso aunque se pierda, pero penalizar niveles altos
+        return -5.0 + (level - 1) * 2.0 + lives_remaining * 0.3
 
 
 def normalize_rewards(rewards: list, eps: float = 1e-8) -> list:

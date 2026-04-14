@@ -111,7 +111,7 @@ class TheMindAgent:
             prompt,
             return_tensors="pt",
             truncation=True,
-            max_length=512,
+            max_length=2048,
         ).to(self.device)
 
         # Evita el warning de transformers cuando el modelo trae max_length
