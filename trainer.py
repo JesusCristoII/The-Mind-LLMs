@@ -68,7 +68,7 @@ class GRPOTrainer:
     # Ejecución de episodio — generate() SIEMPRE sin grafo
     # ──────────────────────────────────────────────────────────────────────────
 
-    def run_episode(self, level: int = 1) -> dict:
+    def run_episode(self, level: int = 1, very_verbose: bool = False) -> dict:
         state = self.env.reset(level=level)
         trajectories = {i: [] for i in range(len(self.agents))}
         total_reward = 0.0
@@ -85,6 +85,12 @@ class GRPOTrainer:
                         continue
                     obs = self.env.get_observation(agent.player_id)
                     decision = agent.generate_action(obs)
+
+                    if very_verbose:
+                        print(
+                            f"Turno {turn} | Player {agent.player_id} | "
+                            f"Obs: {obs} | Message: {decision['message']}"
+                        )
 
                     if decision["message"]:
                         self.env.send_message(agent.player_id, decision["message"])
@@ -144,6 +150,9 @@ class GRPOTrainer:
 
             if not played_this_turn:
                 total_reward -= 0.1
+        
+        if turn >= max_turns_this_episode:
+            total_reward -= 3.0  # Penalización por exceder el límite de turnos
 
         ep_r = episode_reward(
             won=state.won or state.round_over,
@@ -268,7 +277,7 @@ class GRPOTrainer:
     # Bucle principal
     # ──────────────────────────────────────────────────────────────────────────
 
-    def train(self, metrics=None, lang_analyzer=None, verbose: bool = True):
+    def train(self, metrics=None, lang_analyzer=None, verbose: bool = True, very_verbose: bool = False):
         from utils import save_checkpoint
 
         config = self.config
@@ -278,7 +287,7 @@ class GRPOTrainer:
             level = min(self.current_level, config.num_levels)  # No exceder max nivel
 
             # Recoger group_size episodios
-            group_results = [self.run_episode(level=level) for _ in range(config.group_size)]
+            group_results = [self.run_episode(level=level, very_verbose=very_verbose) for _ in range(config.group_size)]
 
             # Actualizar pesos tras el warmup
             losses = {}

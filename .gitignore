@@ -210,8 +210,7 @@ unsloth_compiled_cache/
 checkpoints/
 checkpoints2/
 
-language_log.json
-language_log2.json
+*.json
 
 hola.ipynb
 
