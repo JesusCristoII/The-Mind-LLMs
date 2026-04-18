@@ -210,7 +210,10 @@ unsloth_compiled_cache/
 checkpoints/
 checkpoints2/
 
-*.json
+language_log.json
+language_log2.json
+language_log_qwen2.5-1.5B.json
+training_metrics_final_qwen2.5-1.5B.png
 
 hola.ipynb
 
