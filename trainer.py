@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class TrainerConfig:
     num_episodes: int = 500
-    num_levels: int = 8
+    num_levels: int = 3
     group_size: int = 4          # episodios por actualización GRPO
     checkpoint_every: int = 50
 
@@ -39,7 +39,7 @@ class TrainerConfig:
     clip_ratio: float = 0.2
     entropy_bonus: float = 0.01
 
-    max_turns_per_episode_ratio: int = 25  # max_turns = max_turns_per_episode_ratio * level (mas cartas mas turnos dejamos jugar)
+    max_turns_per_episode: int = 200
     messages_per_turn: bool = True
 
     device: str = "cpu"
@@ -53,8 +53,6 @@ class GRPOTrainer:
         self.env = env
         self.config = config
         self.episode_count = 0
-        self.current_level = 1  # Sistema progresivo: empieza en nivel 1
-        self.episodes_at_level = 0  # Contador de episodios en el nivel actual
 
         if optimizers is None:
             self.optimizers = [
@@ -68,14 +66,13 @@ class GRPOTrainer:
     # Ejecución de episodio — generate() SIEMPRE sin grafo
     # ──────────────────────────────────────────────────────────────────────────
 
-    def run_episode(self, level: int = 1, very_verbose: bool = False) -> dict:
+    def run_episode(self, level: int = 1) -> dict:
         state = self.env.reset(level=level)
         trajectories = {i: [] for i in range(len(self.agents))}
         total_reward = 0.0
         turn = 0
-        max_turns_this_episode = self.config.max_turns_per_episode_ratio * level
 
-        while not self.env.is_done() and turn < max_turns_this_episode:
+        while not self.env.is_done() and turn < self.config.max_turns_per_episode:
             turn += 1
 
             # Fase de comunicación — siempre no_grad (generate lo garantiza)
@@ -86,14 +83,13 @@ class GRPOTrainer:
                     obs = self.env.get_observation(agent.player_id)
                     decision = agent.generate_action(obs)
 
-                    if very_verbose:
-                        print(
-                            f"Turno {turn} | Player {agent.player_id} | "
-                            f"Obs: {obs} | Message: {decision['message']}"
-                        )
-
-                    if decision["message"]:
-                        self.env.send_message(agent.player_id, decision["message"])
+                    # Registrar mensaje junto con la acción decidida
+                    act_taken = decision["action"]
+                    self.env.send_message(
+                        agent.player_id,
+                        decision["message"],
+                        act=act_taken,
+                    )
 
                     comm_reward = compute_communication_quality(decision["message"], obs)
                     trajectories[agent.player_id].append({
@@ -150,9 +146,6 @@ class GRPOTrainer:
 
             if not played_this_turn:
                 total_reward -= 0.1
-        
-        if turn >= max_turns_this_episode:
-            total_reward -= 3.0  # Penalización por exceder el límite de turnos
 
         ep_r = episode_reward(
             won=state.won or state.round_over,
@@ -277,17 +270,18 @@ class GRPOTrainer:
     # Bucle principal
     # ──────────────────────────────────────────────────────────────────────────
 
-    def train(self, metrics=None, lang_analyzer=None, verbose: bool = True, very_verbose: bool = False):
+    def train(self, metrics=None, lang_analyzer=None, verbose: bool = True):
         from utils import save_checkpoint
 
-        config = self.config
+        config         = self.config
+        level_schedule = self._build_level_schedule()
 
         for episode in range(self.episode_count, config.num_episodes):
             self.episode_count = episode
-            level = min(self.current_level, config.num_levels)  # No exceder max nivel
+            level = level_schedule[episode]
 
             # Recoger group_size episodios
-            group_results = [self.run_episode(level=level, very_verbose=very_verbose) for _ in range(config.group_size)]
+            group_results = [self.run_episode(level=level) for _ in range(config.group_size)]
 
             # Actualizar pesos tras el warmup
             losses = {}
@@ -297,15 +291,6 @@ class GRPOTrainer:
             avg_reward   = sum(r["total_reward"] for r in group_results) / len(group_results)
             avg_won      = sum(1 for r in group_results if r["won"]) / len(group_results)
             avg_mistakes = sum(r["mistakes"] for r in group_results) / len(group_results)
-            
-            # Sistema progresivo: si superan el nivel con 75% de éxito, pasar al siguiente
-            if avg_won >= 0.75 and self.current_level < config.num_levels:
-                self.current_level += 1
-                self.episodes_at_level = 0
-                if verbose:
-                    print(f"  ✓ Nivel {level} superado! Pasando a nivel {self.current_level}...")
-            else:
-                self.episodes_at_level += config.group_size
 
             for r in group_results:
                 if metrics:
@@ -321,7 +306,7 @@ class GRPOTrainer:
                             message=msg["text"], card=None, table_top=0,
                         )
 
-            if verbose and episode % 5 == 0:
+            if verbose and episode % 10 == 0:
                 loss_str = f" | Loss: {list(losses.values())[0]:.4f}" if losses else ""
                 print(
                     f"Ep {episode:4d} | Nivel {level} | "
@@ -342,7 +327,17 @@ class GRPOTrainer:
             if metrics:
                 metrics.print_summary()
 
-
+    def _build_level_schedule(self) -> list:
+        n      = self.config.num_episodes
+        levels = self.config.num_levels
+        schedule = []
+        for i in range(n):
+            p = i / n
+            if p < 0.5:   level = 1
+            elif p < 0.75: level = min(2, levels)
+            else:          level = min(3, levels)
+            schedule.append(level)
+        return schedule
 
 
 class _DummyMetrics:

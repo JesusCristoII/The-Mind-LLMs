@@ -42,10 +42,16 @@ Donde "act" puede ser: "wait" (esperar), "play" (jugar mi carta más baja), "sta
 No incluyas tu número en "msg". Ejemplo válido: {{"msg": "creo que es pronto", "act": "wait"}}"""
 
 
+ACT_LABEL = {"play": "jugó", "wait": "esperó", "star": "usó estrella"}
+
 def format_messages(messages: list) -> str:
     if not messages:
         return "(ninguno)"
-    return " | ".join([f"J{m['player']}: {m['text']}" for m in messages[-5:]])
+    parts = []
+    for m in messages[-5:]:
+        act_str = ACT_LABEL.get(m.get("act", ""), "?")
+        parts.append(f"J{m['player']} [{act_str}]: {m['text']}")
+    return " | ".join(parts)
 
 
 def example_to_prompt_and_target(example: dict, tokenizer) -> tuple[str, str]:
@@ -61,22 +67,36 @@ def example_to_prompt_and_target(example: dict, tokenizer) -> tuple[str, str]:
         messages=format_messages(example.get("messages", [])),
     )
 
-    if hasattr(tokenizer, "apply_chat_template"):
-        messages = [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user",   "content": action_text},
-        ]
-        prompt = tokenizer.apply_chat_template(
-            messages, tokenize=False, add_generation_prompt=True
-        )
+    has_template = (
+        hasattr(tokenizer, "apply_chat_template")
+        and getattr(tokenizer, "chat_template", None) is not None
+    )
+    if has_template:
+        try:
+            messages = [
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "user",   "content": action_text},
+            ]
+            prompt = tokenizer.apply_chat_template(
+                messages, tokenize=False, add_generation_prompt=True
+            )
+        except (ValueError, KeyError):
+            prompt = f"<|im_start|>system\n{SYSTEM_PROMPT}<|im_end|>\n<|im_start|>user\n{action_text}<|im_end|>\n<|im_start|>assistant\n"
     else:
-        prompt = f"{SYSTEM_PROMPT}\n\n{action_text}\n\nRespuesta:"
+        prompt = f"<|im_start|>system\n{SYSTEM_PROMPT}<|im_end|>\n<|im_start|>user\n{action_text}<|im_end|>\n<|im_start|>assistant\n"
 
-    # Target: el JSON que queremos que el modelo aprenda a generar
-    target = json.dumps(
+    # Target: bloque <think> + JSON (formato DeepSeek-R1)
+    # Si el ejemplo tiene campo "think", el modelo aprende a razonar primero.
+    # Si no tiene "think" (dataset antiguo), se genera solo el JSON.
+    think_text = example.get("think", "")
+    json_part = json.dumps(
         {"msg": example["msg"], "act": example["act"]},
         ensure_ascii=False,
     )
+    if think_text:
+        target = f"<think>\n{think_text}\n</think>\n{json_part}"
+    else:
+        target = json_part
 
     return prompt, target
 
@@ -307,16 +327,23 @@ def verify_sft_quality(agents: list, tokenizer, num_samples: int = 5, device: st
             stars=ex["stars"],
             messages=format_messages(ex.get("messages", [])),
         )
-        if hasattr(tokenizer, "apply_chat_template"):
-            chat = [
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user",   "content": action_text},
-            ]
-            prompt = tokenizer.apply_chat_template(
-                chat, tokenize=False, add_generation_prompt=True
-            )
+        has_template = (
+            hasattr(tokenizer, "apply_chat_template")
+            and getattr(tokenizer, "chat_template", None) is not None
+        )
+        if has_template:
+            try:
+                chat = [
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user",   "content": action_text},
+                ]
+                prompt = tokenizer.apply_chat_template(
+                    chat, tokenize=False, add_generation_prompt=True
+                )
+            except (ValueError, KeyError):
+                prompt = f"<|im_start|>system\n{SYSTEM_PROMPT}<|im_end|>\n<|im_start|>user\n{action_text}<|im_end|>\n<|im_start|>assistant\n"
         else:
-            prompt = f"{SYSTEM_PROMPT}\n\n{action_text}\n\nRespuesta:"
+            prompt = f"<|im_start|>system\n{SYSTEM_PROMPT}<|im_end|>\n<|im_start|>user\n{action_text}<|im_end|>\n<|im_start|>assistant\n"
 
         prompt_with_start = prompt + '{\"'
 

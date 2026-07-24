@@ -1,0 +1,4071 @@
+[
+  {
+    "my_hand": [
+      1
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 1, la carta más baja posible. Con la mesa en 0, nadie puede tener nada por debajo de mí. Tiro sin dudar y sin necesidad de avisar.",
+    "msg": "",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      2
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 2. Podría haber alguien con el 1, pero es muy poco probable con 4 jugadores. Mi carta es extremadamente baja, casi seguro soy el primero. Tiro.",
+    "msg": "",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      3
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 3. Es una carta muy baja, estoy en el 6% inferior del mazo. Probablemente soy el primero o segundo. Aviso que voy pronto y tiro.",
+    "msg": "voy muy pronto",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      4
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 4, bastante baja. Podría haber 1, 2 o 3 antes que yo, pero son pocas cartas en 4 jugadores. Aviso urgencia y tiro.",
+    "msg": "urgente",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      5
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 5. Es baja pero no la más baja posible. Con 4 jugadores, podría haber 1-4 antes. Mejor señalo que tengo prisa y espero un momento a ver si alguien reacciona.",
+    "msg": "tengo prisa",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      5
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "la mía es alta",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "la mía es baja pero no para empezar yo",
+        "act": "wait"
+      },
+      {
+        "player": 2,
+        "text": "mi carta está por la mitad",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 5. Jugador 0 tiene carta alta [esperó], jugador 1 baja pero no de las primeras [esperó], jugador 2 en la mitad [esperó]. Ninguno parece tener algo por debajo de 5. Soy yo el que debe empezar.",
+    "msg": "vale, echo yo entonces",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      7
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 7. Está en el 14% inferior. Podría haber varias cartas antes, pero es bastante baja. Aviso que soy de los primeros y espero brevemente.",
+    "msg": "soy de los primeros",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      7
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 1,
+        "text": "voy muy pronto",
+        "act": "wait"
+      },
+      {
+        "player": 3,
+        "text": "soy yo el primero",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 7. El jugador 1 dice que va pronto [esperó], el 3 dice que es el primero [jugó su carta]. Si el 3 es el primero y el 1 va pronto, probablemente tienen cartas entre 1-6. Yo con el 7 voy después de ellos.",
+    "msg": "puede que yo antes del primero",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      8
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 8. Es baja, en el 16% inferior. Aviso que soy de los primeros. Espero un momento para ver si alguien tiene algo más bajo.",
+    "msg": "soy de los primeros",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      12
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 12. Está en el primer cuarto del mazo (24%). Hay hueco para que otros jueguen antes. Aviso que voy bastante pronto pero espero.",
+    "msg": "voy bastante pronto",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      38
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 38, en el 76% del mazo. Queda mucho juego por delante. Claramente no es mi turno ahora. Señalo calma y espero.",
+    "msg": "calma por mi parte",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      44
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 44. Estoy casi al final del mazo. Voy a ser de los últimos con toda seguridad. Espero tranquilo.",
+    "msg": "yo soy de los últimos",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      47
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 47. Es altísima, el 94% del mazo. Seré de los últimos jugadores con seguridad. Señalo que voy al final.",
+    "msg": "yo hasta el final nada",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      50
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 50, la carta más alta del mazo. Seré el último absoluto. Espero a todos.",
+    "msg": "voy el último seguro",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      50
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 2,
+        "text": "zona media",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 50, la carta más alta posible. El jugador 2 está en zona media [esperó]. Ningún contexto cambia que soy el último.",
+    "msg": "yo seré el último",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      22
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 22. Está justo en la mitad del mazo (44%). Hay probablemente 2-3 jugadores con cartas más bajas antes que yo. Señalo zona media y espero.",
+    "msg": "estoy en el medio",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      27
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 27. Es zona media-alta (54%). Hay bastante juego antes que yo. Señalo mi posición y espero.",
+    "msg": "zona media",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      29
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 29. Justo por encima de la mitad (58%). Claramente no voy de los primeros. Señalo zona media y espero.",
+    "msg": "zona media, espero",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      32
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 32. Zona media-alta (64%). Hay bastante recorrido antes de que me toque. Señalo mi posición aproximada.",
+    "msg": "zona media-alta",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      5
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 3,
+        "text": "zona media-alta",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 5. El jugador 3 está en zona media-alta [esperó], digamos por encima de 30. Yo con el 5 soy claramente el primero. Aviso y juego.",
+    "msg": "yo soy bajo",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      45
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 3,
+        "text": "zona media-alta",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 45. El jugador 3 dice zona media-alta [esperó], probablemente 30-40. Yo estoy por encima de él. Señalo que soy alto y espero a todos.",
+    "msg": "yo soy alto",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      20
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 3,
+        "text": "zona media-alta",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "yo soy bajo",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 20. El 3 está en zona alta [esperó], el 1 es bajo (probablemente <15). Yo con el 20 estoy en zona media baja, voy después del jugador 1 [jugó su carta].",
+    "msg": "yo soy medio",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      11
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 3,
+        "text": "zona media-alta",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "yo soy bajo",
+        "act": "play"
+      },
+      {
+        "player": 2,
+        "text": "yo soy medio",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 11. El 3 en zona alta (>30), el 2 en zona media (20-29), el 1 es bajo (<15). Yo con el 11 estoy entre el bajo y el medio, voy antes que el 2. El jugador 3 dijo \"zona media-alta\" y esperó. El jugador 1 dijo \"yo soy bajo\" y jugó su carta. El jugador 2 dijo \"yo soy medio\" y esperó.",
+    "msg": "yo entre el bajo y el medio",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      2
+    ],
+    "table_top": 1,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 2. La mesa está en 1. Soy el inmediato siguiente, distancia de 1. No puede haber nadie entre el 1 y el 2. Juego ya.",
+    "msg": "siguiente soy yo",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      11
+    ],
+    "table_top": 10,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 11. La mesa está en 10. Distancia de 1. Soy el inmediato siguiente con casi total seguridad.",
+    "msg": "voy yo seguro",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      21
+    ],
+    "table_top": 20,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 21. La mesa está en 20. Distancia de 1. Nadie puede estar entre 20 y 21. Juego.",
+    "msg": "ahora mismo",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      19
+    ],
+    "table_top": 18,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 19. La mesa está en 18. Distancia de 1. Es mi turno inmediato.",
+    "msg": "ya voy",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      15
+    ],
+    "table_top": 10,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 15. La mesa está en 10. Distancia de 5. Podría haber 11, 12, 13 o 14 antes que yo. Aviso que voy pronto pero espero.",
+    "msg": "voy en breve",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      45
+    ],
+    "table_top": 10,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 45. La mesa está en 10. Distancia de 35. Queda muchísimo juego. Espero tranquilo.",
+    "msg": "paciencia de mi lado",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      33
+    ],
+    "table_top": 10,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 33. La mesa está en 10. Distancia de 23. Hay mucho espacio entre 10 y 33, varios jugadores pueden tener cartas ahí. No es mi turno.",
+    "msg": "todavía no es mi turno",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      25
+    ],
+    "table_top": 20,
+    "lives": 2,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 25. La mesa está en 20. Distancia de 5. Podría haber 21-24 antes, pero no hay mucho espacio. Aviso que tengo algo próximo. Con 2 vidas hay que avisar.",
+    "msg": "cuidado, tengo algo próximo",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      40
+    ],
+    "table_top": 20,
+    "lives": 2,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 40. La mesa está en 20. Distancia de 20. Queda mucho. Con 2 vidas más razón para no precipitarse.",
+    "msg": "espero con calma",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      26
+    ],
+    "table_top": 25,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 26. La mesa está en 25. Distancia de 1. Soy el siguiente inmediato.",
+    "msg": "voy ya",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      48
+    ],
+    "table_top": 20,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 48. La mesa está en 20. Distancia de 28. Mucho juego por delante.",
+    "msg": "queda mucho para mí",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      17
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "voy pronto",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 17. El jugador 0 dice que va pronto [esperó], probablemente tiene algo entre 1-10. Yo con 17 voy después. Espero a que juegue primero.",
+    "msg": "yo espero un poco",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      6
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 1,
+        "text": "yo espero",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 6. El jugador 1 dice que espera [esperó], así que tiene carta alta. Yo con el 6 soy de los primeros. Si nadie más avisa urgencia, soy yo quien debe empezar.",
+    "msg": "soy yo entonces",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      14
+    ],
+    "table_top": 10,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 2,
+        "text": "zona media, espero",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 14. La mesa está en 10. El jugador 2 dice zona media [esperó], tendrá algo por encima de 25. Yo con el 14 voy antes que él.",
+    "msg": "voy antes que tú",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      30
+    ],
+    "table_top": 15,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 2,
+        "text": "voy en breve",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 30. La mesa está en 15. El jugador 2 dice que va en breve [esperó], tendrá algo entre 16-25 probablemente. Yo con 30 voy después de él.",
+    "msg": "yo después",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      18
+    ],
+    "table_top": 15,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "casi casi",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 18. La mesa está en 15. El jugador 0 dice casi casi [esperó], probablemente tiene 16 o 17. Yo con el 18 voy justo después de él.",
+    "msg": "yo también pronto",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      42
+    ],
+    "table_top": 10,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 3,
+        "text": "tengo prisa",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 42. La mesa está en 10. El jugador 3 tiene prisa [esperó], tendrá algo bajo. Yo con el 42 estoy muy lejos. Espero tranquilo.",
+    "msg": "yo tranquilo",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      8
+    ],
+    "table_top": 5,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 1,
+        "text": "cuidado",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 8. La mesa está en 5. Distancia de 3. El jugador 1 avisa cuidado [esperó], probablemente también tiene algo cerca del 5. Con 2 vidas hay que ir con tiento, pero yo podría ser el siguiente. Juego avisando.",
+    "msg": "voy con cuidado",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      35
+    ],
+    "table_top": 5,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 35. La mesa está en 5. El jugador 0 va ya y jugó su carta [jugó su carta], tendrá algo entre 6-15. Yo con el 35 voy mucho después. Espero.",
+    "msg": "yo espero",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      26
+    ],
+    "table_top": 20,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 1,
+        "text": "algo para después",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 26. La mesa está en 20. El jugador 1 dice que tiene algo para después [esperó], probablemente por encima de 30. Yo con el 26 voy antes que él, distancia de 6.",
+    "msg": "yo tengo algo justo ahora",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      44
+    ],
+    "table_top": 20,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "tengo algo ahora",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 44. La mesa está en 20. El jugador 0 dice que tiene algo ahora [esperó], probablemente 21-26. Yo con el 44 voy mucho después.",
+    "msg": "yo después",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      9
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 2,
+        "text": "voy pronto",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "yo espero",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 9. El jugador 2 va pronto (carta baja) [esperó], el 1 espera (confirmado: esperó) (carta alta) [esperó]. Yo con el 9 podría ir justo después del jugador 2. Espero a que juegue y luego voy.",
+    "msg": "voy después del primero",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      4
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 2,
+        "text": "voy pronto",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "yo espero",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 4. El jugador 2 va pronto pero con el 4 yo podría ser incluso antes [esperó]. El jugador 1 espera [esperó]. Hay que clarificar quién va primero, pero probablemente soy yo.",
+    "msg": "soy yo el primero",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      10
+    ],
+    "table_top": 8,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 3,
+        "text": "casi casi",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 10. La mesa está en 8. El jugador 3 dice casi casi [esperó], probablemente tenía algo entre 6-9 que ya fue. Yo con el 10 voy justo después.",
+    "msg": "yo justo después",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      28
+    ],
+    "table_top": 8,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 3,
+        "text": "casi casi",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 28. La mesa está en 8. El jugador 3 va casi [esperó], tendrá algo entre 9-12. Yo con el 28 voy bastante después.",
+    "msg": "yo bastante después",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      6
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "voy muy pronto",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "soy yo el primero",
+        "act": "play"
+      },
+      {
+        "player": 2,
+        "text": "espero a que pasen los primeros",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 6. El jugador 1 dice que es el primero y el 0 va muy pronto —y jugó su cart [jugó su carta]a—. Podría haber cartas de 1-5 antes que el mío. Pero si el 1 es el primero con algo muy bajo y el 0 va pronto, yo con el 6 podría ir tercero. El jugador 2 dijo \"espero a que pasen los primeros\" y esperó.",
+    "msg": "puede que yo también pronto",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      44
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "voy muy pronto",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "soy yo el primero",
+        "act": "play"
+      },
+      {
+        "player": 2,
+        "text": "espero a que pasen los primeros",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 44. Otros jugadores están claramente por delante de mí. Espero tranquilo al final. El jugador 0 dijo \"voy muy pronto\" y esperó. El jugador 1 dijo \"soy yo el primero\" y jugó su carta. El jugador 2 dijo \"espero a que pasen los primeros\" y esperó.",
+    "msg": "yo al final",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      11
+    ],
+    "table_top": 10,
+    "lives": 1,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 11. La mesa está en 10. Distancia de 1, soy el siguiente seguro. PERO solo queda 1 vida. Aviso con mucho cuidado antes de tirar.",
+    "msg": "cuidado, voy justo ahora",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      39
+    ],
+    "table_top": 10,
+    "lives": 1,
+    "stars": 0,
+    "messages": [],
+    "think": "Tengo el 39. La mesa está en 10. Distancia de 29. Última vida y sin estrellas. No puedo arriesgar nada. Espero a que todos los demás coloquen sus cartas.",
+    "msg": "espero, última vida",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      24
+    ],
+    "table_top": 10,
+    "lives": 1,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 24. La mesa está en 10. Distancia de 14. Última vida, hay que ir con mucho cuidado. Podría haber 11-23 antes. Aviso que tengo algo próximo para que nadie se precipite.",
+    "msg": "tengo algo próximo, con cuidado",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      45
+    ],
+    "table_top": 10,
+    "lives": 1,
+    "stars": 0,
+    "messages": [],
+    "think": "Tengo el 45. Última vida, sin estrellas. La mesa en 10 y yo en 45. Mucho camino. Espero mucho.",
+    "msg": "tranquilos, espero",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      13
+    ],
+    "table_top": 10,
+    "lives": 1,
+    "stars": 0,
+    "messages": [],
+    "think": "Tengo el 13. La mesa en 10, distancia de 3. Podría haber 11 o 12 antes. Última vida. Aviso que voy muy pronto para coordinar.",
+    "msg": "casi, voy muy pronto",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      2
+    ],
+    "table_top": 0,
+    "lives": 1,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 2. Última vida. Con carta tan baja, hay muy poca probabilidad de que alguien tenga el 1. Juego en silencio.",
+    "msg": "",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      16
+    ],
+    "table_top": 14,
+    "lives": 1,
+    "stars": 0,
+    "messages": [],
+    "think": "Tengo el 16. La mesa en 14. Distancia de 2. Podría haber el 15 antes, pero con última vida y sin estrellas, si no se oye nada, probablemente soy yo el siguiente.",
+    "msg": "voy justo ahora",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      33
+    ],
+    "table_top": 14,
+    "lives": 1,
+    "stars": 0,
+    "messages": [],
+    "think": "Tengo el 33. La mesa en 14. Distancia de 19. Última vida, no me arriesgo para nada. Espero.",
+    "msg": "no es mi turno aún",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      7
+    ],
+    "table_top": 5,
+    "lives": 1,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 0,
+        "text": "cuidado",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 7. La mesa en 5. Distancia de 2. El jugador 0 avisa cuidado [esperó], probablemente también tiene algo entre 6 y 10. Última vida. Pero con el 7 yo podría ser el siguiente. Si el 0 tiene el 6, él va antes. Si tiene el 8 o más, soy yo. Como no puedo saberlo, aviso y juego.",
+    "msg": "voy ya, es mi turno",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      8
+    ],
+    "table_top": 6,
+    "lives": 1,
+    "stars": 0,
+    "messages": [],
+    "think": "Tengo el 8. La mesa en 6. Distancia de 2. Puede haber el 7. Última vida. Aviso que voy ya por si alguien tiene el 7.",
+    "msg": "voy ya, última oportunidad",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      35
+    ],
+    "table_top": 6,
+    "lives": 1,
+    "stars": 0,
+    "messages": [],
+    "think": "Tengo el 35. La mesa en 6. Última vida. Hay mucho recorrido antes de mí. No arriesgo absolutamente nada.",
+    "msg": "espero, no arriesgo nada",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      9
+    ],
+    "table_top": 6,
+    "lives": 1,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 1,
+        "text": "voy ya, última oportunidad",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 9. El jugador 1 avisa que va ya [jugó su carta]. Si tiene el 7 u 8, yo con el 9 voy justo detrás. Con última vida, aviso antes de tirar.",
+    "msg": "yo justo después, con cuidado",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      42
+    ],
+    "table_top": 6,
+    "lives": 1,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 1,
+        "text": "voy ya, última oportunidad",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 42. Última vida. El jugador 1 va con urgencia [jugó su carta]. Yo con el 42 espero mucho, no interfiero.",
+    "msg": "yo espero mucho",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      3,
+      28
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 3 y el 28. En el juego siempre juego mi carta mínima cuando decido jugar. Mi mínima es el 3, que es muy baja. Aviso urgencia y juego el 3.",
+    "msg": "voy muy pronto",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      16,
+      44
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 16 y el 44. Mi mínima es el 16, que está en el primer tercio (32%). Podría haber algo antes. Aviso que tengo algo para pronto y espero.",
+    "msg": "tengo algo para el principio",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      8,
+      35
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 8 y el 35. Mi mínima es el 8, bastante baja (16%). Aviso que tengo carta baja y juego.",
+    "msg": "tengo una carta baja",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      22,
+      39
+    ],
+    "table_top": 20,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 22 y el 39. La mesa está en 20. Mi mínima es el 22, distancia de 2. Casi seguro soy el siguiente inmediato.",
+    "msg": "tengo algo ahora",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      31,
+      48
+    ],
+    "table_top": 20,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 31 y el 48. La mesa en 20. Mi mínima es el 31, distancia de 11. Hay espacio para otros. Espero.",
+    "msg": "espero un poco más",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      6,
+      41
+    ],
+    "table_top": 5,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 6 y el 41. La mesa en 5. Mi mínima es el 6, distancia de 1. Soy el siguiente. Juego.",
+    "msg": "siguiente podría ser yo",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      13,
+      27
+    ],
+    "table_top": 10,
+    "lives": 2,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 13 y el 27. La mesa en 10. Mi mínima es el 13, distancia de 3. Con 2 vidas hay que avisar. Podría haber 11 o 12 antes.",
+    "msg": "tengo algo próximo, ojo",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      4,
+      19
+    ],
+    "table_top": 3,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 4 y el 19. La mesa en 3. Mi mínima es el 4, distancia de 1. Soy el siguiente inmediato.",
+    "msg": "voy ya",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      36,
+      49
+    ],
+    "table_top": 30,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 36 y el 49. La mesa en 30. Mi mínima es el 36, distancia de 6. Podría haber 31-35 antes. Espero.",
+    "msg": "algo para después",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      9,
+      23
+    ],
+    "table_top": 8,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 9 y el 23. La mesa en 8. Mi mínima es el 9, distancia de 1. Soy el siguiente.",
+    "msg": "casi",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      2,
+      18,
+      36
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 2, 18 y 36. Mi mínima es el 2, extremadamente baja. Casi seguro soy el primero o el segundo. Juego.",
+    "msg": "tengo algo muy urgente",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      14,
+      29,
+      45
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 14, 29 y 45. Mi mínima es el 14 (28%). Podría haber varios antes. Aviso que tengo algo para pronto y espero.",
+    "msg": "tengo algo para pronto",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      7,
+      22,
+      41
+    ],
+    "table_top": 5,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 7, 22 y 41. La mesa en 5. Mi mínima es el 7, distancia de 2. Podría haber el 6. Aviso y juego.",
+    "msg": "voy pronto",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      3,
+      15,
+      30
+    ],
+    "table_top": 2,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 3, 15 y 30. La mesa en 2. Mi mínima es el 3, distancia de 1. Soy el siguiente.",
+    "msg": "voy ya",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      11,
+      27,
+      43
+    ],
+    "table_top": 8,
+    "lives": 2,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 11, 27 y 43. La mesa en 8. Mi mínima es el 11, distancia de 3. Con 2 vidas hay que coordinar. Podría haber 9 o 10 antes.",
+    "msg": "voy pronto",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      23,
+      38,
+      50
+    ],
+    "table_top": 8,
+    "lives": 2,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 23, 38 y 50. La mesa en 8. Mi mínima es el 23, distancia de 15. Hay bastante espacio. Espero.",
+    "msg": "espero un poco",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      22,
+      23
+    ],
+    "table_top": 20,
+    "lives": 2,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 22 y el 23, dos cartas CONSECUTIVAS. La mesa está en 20. El 22 es el siguiente casi seguro. IMPORTANTE: cuando juegue el 22, el 23 va prácticamente de seguido ya que nadie puede tener algo entre ellos. Aviso al equipo de esto.",
+    "msg": "ojo, tengo dos muy seguidas, cuando juegue una va la otra",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      23
+    ],
+    "table_top": 22,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "ojo, tengo dos muy seguidas, cuando juegue una va la otra",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 23. La mesa está en 22. El jugador 0 avisó que tenía dos cartas seguidas [esperó]. La segunda de sus cartas era el 23, que ahora me toca a mí... espera, no, yo tengo el 23 y la mesa está en 22. Esto es confuso. Yo tengo el 23 y la mesa está en 22, voy yo.",
+    "msg": "y esta va justo detrás",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      15,
+      16
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 15 y el 16, consecutivas. Aviso al equipo: cuando juegue el 15, el 16 va inmediatamente después, sin dar tiempo a que nadie reaccione.",
+    "msg": "tengo dos seguidas, la segunda va inmediatamente después de la primera",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      15,
+      16
+    ],
+    "table_top": 14,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 1,
+        "text": "voy en breve",
+        "act": "wait"
+      },
+      {
+        "player": 2,
+        "text": "yo después",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 15 y el 16 consecutivas. La mesa está en 14. Distancia de 1, soy el siguiente. Ya avisé antes que tengo dos seguidas. Juego el 15. El jugador 1 dijo \"voy en breve\" y esperó. El jugador 2 dijo \"yo después\" y esperó.",
+    "msg": "echo la primera, la segunda va detrás",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      16
+    ],
+    "table_top": 15,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "echo la primera, la segunda va detrás",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 16. La mesa está en 15. Soy el siguiente. El jugador 0 había avisado que tenía dos seguidas [jugó su carta]. La mesa pasó al 15, así que yo con el 16 voy ahora.",
+    "msg": "y esta detrás como avisé",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      33,
+      34,
+      35
+    ],
+    "table_top": 32,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 33, 34 y 35, TRES cartas consecutivas. La mesa está en 32. Soy el siguiente con el 33. CRÍTICO: avisar que las tres van seguidas sin pausa.",
+    "msg": "ojo, tengo tres seguidas, van una tras otra sin parar",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      34,
+      35
+    ],
+    "table_top": 33,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "ojo, tengo tres seguidas, van una tras otra sin parar",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 34 y el 35. La mesa en 33. El jugador 0 había avisado que tenía tres consecutivas empezando por 33 [esperó]. Yo tengo el 34 y el 35... espera, si el 0 tenía 33-34-35 y jugó el 33, entonces el 34 es suyo también. Yo con el 34... En realidad, en el juego cada uno tiene su propia mano. El jugador 0 tenía 33, 34, 35 y jugó el 33. Ahora la mesa está en 33 y yo tengo el 34. Espero a que el 0 juegue su 34.",
+    "msg": "espero a que sigas tú",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      8,
+      9
+    ],
+    "table_top": 7,
+    "lives": 1,
+    "stars": 0,
+    "messages": [],
+    "think": "Tengo el 8 y el 9, CONSECUTIVAS. La mesa en 7. Última vida. El 8 va ahora. MUCHO CUIDADO: aviso que el 9 va justo después para que nadie se precipite.",
+    "msg": "voy ya con el 8, y el 9 va detrás, CUIDADO",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      9
+    ],
+    "table_top": 8,
+    "lives": 1,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 2,
+        "text": "voy ya con el 8, y el 9 va detrás, CUIDADO",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 9. La mesa en 8. El jugador 2 avisó que tenía el 8 y el 9 [jugó su carta]. Pero yo tengo el 9... Esto es una contradicción del juego, solo hay un 9. Quizás el 2 tenía el 8 solamente y anunció mal. En cualquier caso, la mesa está en 8 y yo tengo el 9. Soy el siguiente con última vida.",
+    "msg": "voy yo justo después",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      24,
+      25
+    ],
+    "table_top": 20,
+    "lives": 2,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 24 y el 25, consecutivas. La mesa en 20. Mi mínima es el 24, distancia de 4. Podría haber 21, 22 o 23 antes. Aviso que tengo dos seguidas pero espero a que llegue mi turno.",
+    "msg": "tengo algo próximo y además van dos seguidas cuando llegue mi turno",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      24,
+      25
+    ],
+    "table_top": 23,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "tengo algo próximo y además van dos seguidas cuando llegue mi turno",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 24 y el 25. La mesa en 23. El jugador 0 avisó que tenía dos seguidas próximas [jugó su carta]. Yo las tengo en el 24 y 25, voy ahora.",
+    "msg": "echo las dos seguidas",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      2,
+      3
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 2 y el 3, consecutivas muy bajas. Con el 2 casi seguro soy el primero, y el 3 va inmediatamente. Aviso que tengo dos muy bajas seguidas.",
+    "msg": "tengo dos bajísimas seguidas, van las dos de salida",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      3
+    ],
+    "table_top": 2,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 1,
+        "text": "tengo dos bajísimas seguidas, van las dos de salida",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 3. La mesa en 2. El jugador 1 avisó que tenía dos bajísimas seguidas [jugó su carta]. Probablemente tenía el 2 y el 3. Si tenía el 3 también, entonces... Yo tengo el 3 y la mesa está en 2. Soy el siguiente.",
+    "msg": "me toca a mí",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      31,
+      33
+    ],
+    "table_top": 40,
+    "lives": 1,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "Tengo cartas altas, me olvido por un rato.",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "Yo también, bastante altas. Estamos atascados.",
+        "act": "wait"
+      },
+      {
+        "player": 2,
+        "text": "Yo no tengo nada cerca. Solo queda una vida.",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 31 y el 33, pero la mesa ya está en 40, que es SUPERIOR a mis cartas. Eso significa que mis cartas ya deberían haber salido. Esto es un error del estado. Si la mesa está en 40 y yo tengo 31 y 33, algo salió mal. En cualquier caso, nadie tiene nada cerca de 40 y solo queda una vida. Proponer la estrella es lo más seguro. El jugador 0 dijo \"Tengo cartas altas, me olvido por un rat...\" y esperó. El jugador 1 dijo \"Yo también, bastante altas. Estamos atas...\" y esperó. El jugador 2 dijo \"Yo no tengo nada cerca. Solo queda una v...\" y esperó.",
+    "msg": "nadie tiene nada cerca. Usemos la estrella para salir de dudas",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      36,
+      41
+    ],
+    "table_top": 40,
+    "lives": 1,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "Tengo cartas altas, me olvido por un rato.",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "Yo también, bastante altas.",
+        "act": "wait"
+      },
+      {
+        "player": 2,
+        "text": "Yo no tengo nada cerca. Solo queda una vida.",
+        "act": "wait"
+      },
+      {
+        "player": 0,
+        "text": "nadie tiene nada cerca. Usemos la estrella para salir de dudas",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 36 y el 41. La mesa en 40. El equipo propone usar la estrella. Yo tengo el 41, que va justo después del 40. Estoy de acuerdo en usar la estrella para revelar las mínimas y coordinar. Con última vida no podemos equivocarnos. El jugador 0 dijo \"Tengo cartas altas [esperó], me olvido por un rat...\" y esperó. El jugador 1 dijo \"Yo también, bastante altas.\" y esperó. El jugador 2 dijo \"Yo no tengo nada cerca. Solo queda una v...\" y esperó.",
+    "msg": "totalmente de acuerdo, usemos la estrella",
+    "act": "star"
+  },
+  {
+    "my_hand": [
+      40,
+      50
+    ],
+    "table_top": 35,
+    "lives": 1,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 1,
+        "text": "Tengo una a menos de 10 de distancia. ¿Alguien más cerca?",
+        "act": "wait"
+      },
+      {
+        "player": 0,
+        "text": "Cuidado, yo la tengo a unos 5 de distancia.",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "Estamos rozándonos. ¿Echa tú que estás más cerca?",
+        "act": "wait"
+      },
+      {
+        "player": 0,
+        "text": "A más de 5 seguro. Echa tú que estás más cerca.",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 40 y el 50. La mesa en 35. Mi mínima es el 40, distancia de 5. El jugador 0 también tiene distancia ~5 [esperó]. Hay confusión sobre quién va primero. Última vida. Con este nivel de incertidumbre, lo más seguro sería usar la estrella, pero como se está coordinando bien la conversación, prefiero esperar a que se resuelva. El jugador 1 dijo \"Tengo una a menos de 10 de distancia [esperó]. ¿A...\" y esperó.",
+    "msg": "yo también tengo algo a distancia 5, pero espero la coordinación",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      41,
+      47
+    ],
+    "table_top": 35,
+    "lives": 1,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 1,
+        "text": "Tengo una a menos de 10 de distancia.",
+        "act": "wait"
+      },
+      {
+        "player": 0,
+        "text": "Yo la tengo a unos 5 de distancia.",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "Estamos rozándonos.",
+        "act": "wait"
+      },
+      {
+        "player": 0,
+        "text": "A más de 5 seguro. Echa tú que estás más cerca.",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 41 y el 47. La mesa en 35. El jugador 0 dice que su distancia es más de 5 [esperó]peró), el jugador 1 dice que la suya es 5 exacto [esperó] [esperó]. Yo tengo el 41, distancia de 6. El que tiene distancia 5 tiene el 40. Ese va antes que yo. Espero.",
+    "msg": "yo voy después del que tiene distancia 5",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      40,
+      50
+    ],
+    "table_top": 35,
+    "lives": 1,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 1,
+        "text": "Tengo una a menos de 10 de distancia.",
+        "act": "wait"
+      },
+      {
+        "player": 0,
+        "text": "Yo la tengo a unos 5 de distancia.",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "Estamos rozándonos.",
+        "act": "wait"
+      },
+      {
+        "player": 0,
+        "text": "A más de 5 seguro. Echa tú que estás más cerca.",
+        "act": "wait"
+      },
+      {
+        "player": 3,
+        "text": "yo voy después del que tiene distancia 5",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 40, distancia exacta de 5 desde la mesa en 35. Todos concluyen que el que tiene distancia 5 va primero. Ese soy yo. Juego. El jugador 1 dijo \"Tengo una a menos de 10 de distancia [esperó].\" y esperó. El jugador 0 dijo \"Yo la tengo a unos 5 de distancia [esperó].\" y esperó. El jugador 3 dijo \"yo voy después del que tiene distancia 5\" y esperó.",
+    "msg": "vale, echando el de distancia 5",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      41,
+      47
+    ],
+    "table_top": 40,
+    "lives": 1,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "vale, echando el de distancia 5",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 41 y el 47. La mesa pasó al 40. El jugador 0 jugó el 40 [jugó su carta]. Yo tengo el 41, distancia de 1. Soy el siguiente inmediato.",
+    "msg": "y esta va justo detrás",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      48,
+      49,
+      50
+    ],
+    "table_top": 30,
+    "lives": 3,
+    "stars": 2,
+    "messages": [],
+    "think": "Tengo el 48, 49 y 50. Las tres cartas más altas posibles, o casi. La mesa en 30. Queda mucho juego antes de que me toque. Aviso que me olviden por un buen rato y que tengo el final de la baraja.",
+    "msg": "olvidaros de mí por mucho tiempo, tengo el final de la baraja",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      38,
+      44
+    ],
+    "table_top": 30,
+    "lives": 3,
+    "stars": 2,
+    "messages": [
+      {
+        "player": 2,
+        "text": "olvidaros de mí por mucho tiempo, tengo el final de la baraja",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 38 y el 44. La mesa en 30. El jugador 2 tiene las cartas finales (48-50 probablemente) [esperó]. Yo con el 38 voy después de que salga algo entre 31 y 37. Avanzo.",
+    "msg": "yo estoy cerca, avanzo",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      15,
+      29
+    ],
+    "table_top": 0,
+    "lives": 1,
+    "stars": 0,
+    "messages": [],
+    "think": "Tengo el 15 y el 29. Última vida, sin estrellas. No puedo decir mis números. Pero puedo dar pistas de rango. Mi mínima es el 15, en la primera veintena. Hay hueco para que alguien tenga algo antes.",
+    "msg": "Tengo algo en la primera veintena, pero hay hueco. Alguien puede tener algo antes.",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      18,
+      30
+    ],
+    "table_top": 0,
+    "lives": 1,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 0,
+        "text": "Tengo algo en la primera veintena, pero hay hueco.",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 18 y el 30. El jugador 0 tiene algo en la primera veintena con hueco [esperó], probablemente entre 10 y 20. Yo con el 18 también estoy en esa zona, pero por el final. Aviso que también tengo algo en la primera veintena, por el final.",
+    "msg": "yo también tengo algo en la primera veintena, por el final de la misma",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      15,
+      29
+    ],
+    "table_top": 0,
+    "lives": 1,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 0,
+        "text": "Tengo algo en la primera veintena, pero hay hueco.",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "yo también tengo algo en la primera veintena, por el final de la misma",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 15. El jugador 1 dice que tiene algo en la primera veintena por el final (17 [esperó]-19 aprox) [esperó]. Yo tengo el 15, que es la mitad exacta del 10 al 20. Si el 1 está más cerca del 20 y yo estoy en el 15, yo voy primero. El jugador 0 dijo \"Tengo algo en la primera veintena, pero ...\" y esperó.",
+    "msg": "la mía está justo en la mitad exacta del 10 al 20. ¿La tuya?",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      18,
+      30
+    ],
+    "table_top": 0,
+    "lives": 1,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 0,
+        "text": "Tengo algo en la primera veintena, pero hay hueco.",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "yo también tengo algo en la primera veintena, por el final.",
+        "act": "wait"
+      },
+      {
+        "player": 0,
+        "text": "la mía está justo en la mitad exacta del 10 al 20. ¿La tuya?",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 18. El jugador 0 tiene algo en la mitad exacta del 10 al 20 [esperó] —y es [esperó]peró—, que sería el 15. Yo tengo el 18, más cerca del 20. Mi carta es mayor que la del 0. Le confirmo y le digo que vaya primero. El jugador 1 dijo \"yo también tengo algo en la primera vein...\" y esperó.",
+    "msg": "vale, la mía está más cerca del 20. Puedes tirar tú primero.",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      15,
+      29
+    ],
+    "table_top": 0,
+    "lives": 1,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 0,
+        "text": "Tengo algo en la primera veintena, pero hay hueco.",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "yo también tengo algo en la primera veintena, por el final.",
+        "act": "wait"
+      },
+      {
+        "player": 0,
+        "text": "la mía está justo en la mitad exacta del 10 al 20.",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "vale, la mía está más cerca del 20. Puedes tirar tú primero.",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 15. Coordinación perfecta: el jugador 1 confirma que su carta es mayor que la mía [esperó]. Yo voy primero. Juego tranquilo. El jugador 0 dijo \"Tengo algo en la primera veintena [esperó], pero ...\" y esperó.",
+    "msg": "entendido, tiro tranquilo",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      18,
+      30
+    ],
+    "table_top": 15,
+    "lives": 1,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 0,
+        "text": "entendido, tiro tranquilo",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 18 y el 30. La mesa está en 15. El jugador 0 jugó el 15 [jugó su carta], ahora me toca a mí con el 18, distancia de 3. Podría haber 16 o 17 antes. Pero coordiamos que yo iba después del 0. Juego.",
+    "msg": "perfecto, ahora va la mía que estaba muy cerquita",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      34,
+      42
+    ],
+    "table_top": 22,
+    "lives": 2,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 34 y el 42. La mesa en 22. Mi mínima es el 34, distancia de 12. Describo mi posición sin decir el número.",
+    "msg": "Estoy a una distancia moderada, ni muy cerca ni muy lejos. Espero.",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      37,
+      46
+    ],
+    "table_top": 22,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 2,
+        "text": "Estoy a una distancia moderada, ni muy cerca ni muy lejos. Espero.",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 37 y el 46. La mesa en 22. Mi mínima es el 37, distancia de 15. El jugador 2 también está a distancia moderada [esperó]. Aviso que yo también y que podríamos interferir.",
+    "msg": "yo también a distancia media. ¿Tu distancia es de más o menos de 10?",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      34,
+      42
+    ],
+    "table_top": 22,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 2,
+        "text": "Estoy a una distancia moderada.",
+        "act": "wait"
+      },
+      {
+        "player": 3,
+        "text": "yo también a distancia media. ¿Tu distancia es de más o menos de 10?",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 34. La mesa en 22. Mi distancia es exactamente 12. El jugador 3 pregunta si es más o menos de 10 [esperó]. Es más de 10. Le respondo y pregunto la suya. El jugador 2 dijo \"Estoy a una distancia moderada.\" y esperó.",
+    "msg": "La mía está casi a 10 más algunos. ¿La tuya es más o menos?",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      37,
+      46
+    ],
+    "table_top": 22,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 2,
+        "text": "Estoy a una distancia moderada.",
+        "act": "wait"
+      },
+      {
+        "player": 3,
+        "text": "¿Tu distancia es de más o menos de 10?",
+        "act": "wait"
+      },
+      {
+        "player": 2,
+        "text": "La mía está casi a 10 más algunos. ¿La tuya?",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 37. La mesa en 22. Mi distancia es 15. El jugador 2 dice que su distancia es un poco más de 10 (probablemente 1 [esperó]2) [esperó]. Yo tengo 15, que es más que el 2. El jugador 2 va antes que yo. El jugador 3 dijo \"¿Tu distancia es de más o menos de 10?\" y esperó.",
+    "msg": "La mía es algo más. Tira tú primero.",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      34,
+      42
+    ],
+    "table_top": 22,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 2,
+        "text": "Estoy a una distancia moderada.",
+        "act": "wait"
+      },
+      {
+        "player": 3,
+        "text": "¿Tu distancia es de más o menos de 10?",
+        "act": "wait"
+      },
+      {
+        "player": 2,
+        "text": "La mía está casi a 10 más algunos.",
+        "act": "wait"
+      },
+      {
+        "player": 3,
+        "text": "La mía es algo más. Tira tú primero.",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 34. La coordinación confirma que voy yo primero. Juego. El jugador 2 dijo \"Estoy a una distancia moderada [esperó].\" y esperó. El jugador 3 dijo \"¿Tu distancia es de más o menos de 10?\" y esperó [esperó].",
+    "msg": "entendido, tiro con cuidado",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      37,
+      46
+    ],
+    "table_top": 34,
+    "lives": 2,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 37 y el 46. La mesa en 34. Mi mínima es el 37, distancia de 3. El jugador 2 jugó el 34 como coordinamos. Ahora me toca a mí.",
+    "msg": "uf, menos mal que coordinamos. Tiro la mía que estaba pegada.",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      6,
+      22,
+      45
+    ],
+    "table_top": 0,
+    "lives": 2,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 6, 22 y 45. Mi mínima es el 6. Es bastante baja. Podría haber 1-5 antes que yo. Aviso que tengo algo bajo pero no sé si soy el primero.",
+    "msg": "Tengo algo bajito, pero no para echar ya. ¿Alguien tiene algo de salida?",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      8,
+      28
+    ],
+    "table_top": 0,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "Tengo algo bajito, pero no para echar ya. ¿Alguien tiene algo de salida?",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 8 y el 28. El jugador 0 tiene algo bajo pero no de salida (probablemente entre 5-9) [esperó]. Yo con el 8 podría ser el primero. Aviso que yo tengo algo bastante bajo.",
+    "msg": "Yo tengo algo bastante bajo, creo que podría empezar yo.",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      6,
+      22,
+      45
+    ],
+    "table_top": 0,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "Tengo algo bajito, pero no para echar ya.",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "Yo tengo algo bastante bajo, creo que podría empezar yo.",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 6. El jugador 1 dice que podría empezar él [esperó], sugiriendo que tiene algo entre 1-7. Yo tengo el 6. Si el 1 tiene algo menor que 6, él va primero. Cedo y espero. El jugador 0 dijo \"Tengo algo bajito, pero no para echar ya...\" y esperó.",
+    "msg": "Vale, mi carta baja no es de una cifra. Echa tú, jugador 1.",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      8,
+      28
+    ],
+    "table_top": 0,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "Tengo algo bajito, pero no para echar ya.",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "Yo tengo algo bastante bajo, creo que podría empezar yo.",
+        "act": "wait"
+      },
+      {
+        "player": 0,
+        "text": "Vale, mi carta baja no es de una cifra. Echa tú, jugador 1.",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 8. El jugador 0 confirma que su carta no es de una cifra (>9) [esperó]. Yo con el 8 podría ser el primero. Tiro. El jugador 1 dijo \"Yo tengo algo bastante bajo, creo que po...\" y esperó.",
+    "msg": "Perfecto, tiro la mía.",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      6,
+      22,
+      45
+    ],
+    "table_top": 8,
+    "lives": 2,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 6, 22 y 45. La mesa está en 8. El 6 es menor que 8, ya debería haber salido. Algo salió mal o no era mi carta la mínima del grupo. Ahora mi siguiente mínima válida sería el 22. Aviso.",
+    "msg": "Esa me viene al pelo, tiro yo ahora mismo.",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      6,
+      15,
+      34
+    ],
+    "table_top": 0,
+    "lives": 1,
+    "stars": 0,
+    "messages": [],
+    "think": "Tengo el 6, 15 y 34. Última vida sin estrellas. Mi mínima es el 6. Podría haber 1-5 antes. Con última vida, no puedo ser el primero si no estoy seguro. Pregunto si alguien quiere empezar.",
+    "msg": "si nadie echa, echo yo ya",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      16,
+      17,
+      22
+    ],
+    "table_top": 0,
+    "lives": 1,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 0,
+        "text": "si nadie echa, echo yo ya",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 16, 17 y 22. El jugador 0 dice que echará si nadie lo hace [esperó]. Yo tengo el 16 como mínima, bastante mayor que lo que podría tener el 0 (que parece tener algo bajo). Espero.",
+    "msg": "yo todavía no, me queda un poco",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      27,
+      36,
+      40
+    ],
+    "table_top": 0,
+    "lives": 1,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 0,
+        "text": "si nadie echa, echo yo ya",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "yo todavía no, me queda un poco",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 27, 36 y 40. Última vida. Mi mínima es el 27. El jugador 0 tiene algo bajo [esperó], el 1 tiene algo un poco mayor [esperó]. Yo con el 27 voy bastante después.",
+    "msg": "a mí me queda bastante",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      42,
+      43,
+      44
+    ],
+    "table_top": 0,
+    "lives": 1,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 0,
+        "text": "si nadie echa, echo yo ya",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "yo todavía no, me queda un poco",
+        "act": "wait"
+      },
+      {
+        "player": 2,
+        "text": "a mí me queda bastante",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 42, 43 y 44. Las tres muy altas. Última vida. El equipo ha coordinado: el 0 tiene algo bajo [esperó], el 1 algo mayor, el 2 bastante después. Yo estoy al final. El 0 debe empezar. El jugador 1 dijo \"yo todavía no, me queda un poco\" y esperó. El jugador 2 dijo \"a mí me queda bastante\" y esperó.",
+    "msg": "yo estoy para acabar, echa la tuya jugador 0",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      6,
+      15,
+      34
+    ],
+    "table_top": 0,
+    "lives": 1,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 0,
+        "text": "si nadie echa, echo yo ya",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "yo todavía no, me queda un poco",
+        "act": "wait"
+      },
+      {
+        "player": 2,
+        "text": "a mí me queda bastante",
+        "act": "wait"
+      },
+      {
+        "player": 3,
+        "text": "yo estoy para acabar, echa la tuya jugador 0",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 6 (yo soy el jugador 0) [esperó]. Todos confirmaron que van después de mí. El 1 un poco después, el 2 bastante después, el 3 al final. Soy el primero. Juego el 6. El jugador 1 dijo \"yo todavía no, me queda un poco\" y esperó. El jugador 2 dijo \"a mí me queda bastante\" y esperó. El jugador 3 dijo \"yo estoy para acabar, echa la tuya jugad...\" y esperó.",
+    "msg": "vale, echo ya",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      32,
+      47
+    ],
+    "table_top": 31,
+    "lives": 1,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 2,
+        "text": "si nadie echa, echo yo ya",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "yo todavía no, me queda bastante hasta la mía",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 32 y el 47. La mesa está en 31. El jugador 2 jugó el 31 (era el jugador que iba a echar) [esperó]. Yo con el 32 soy el siguiente inmediato. El jugador 1 dijo que le queda bastante [esperó], así que no interfiere.",
+    "msg": "me toca a mí seguro, echo mi carta",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      43,
+      46
+    ],
+    "table_top": 40,
+    "lives": 2,
+    "stars": 0,
+    "messages": [],
+    "think": "Tengo el 43 y el 46. La mesa en 40. Mi mínima es el 43, distancia de 3. Estamos en la recta final. Aviso que estoy cerca.",
+    "msg": "Entramos en la recta final. Estoy cerca. ¿Alguien tiene algo entre 40 y 43?",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      41,
+      50
+    ],
+    "table_top": 40,
+    "lives": 2,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 1,
+        "text": "Entramos en la recta final. Estoy cerca. ¿Alguien tiene algo entre 40 y 43?",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 41 y el 50. La mesa en 40. Mi mínima es el 41, distancia de 1. Soy el siguiente inmediato. ¡Jugado después del 40! El jugador 1 dijo \"Entramos en la recta final. Estoy cerca....\" y esperó.",
+    "msg": "Yo tengo algo pegadísimo al centro. Dejadme ir a mí.",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      43,
+      46
+    ],
+    "table_top": 40,
+    "lives": 2,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 1,
+        "text": "Entramos en la recta final. Estoy cerca.",
+        "act": "wait"
+      },
+      {
+        "player": 2,
+        "text": "Yo tengo algo pegadísimo al centro. Dejadme ir a mí.",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 43. El jugador 2 dice que tiene algo pegadísimo al 40 [esperó], probablemente 41 o 42. Si es el 41, va antes que yo. Espero. El jugador 1 dijo \"Entramos en la recta final. Estoy cerca.\" y esperó.",
+    "msg": "Perfecto, te espero.",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      41,
+      50
+    ],
+    "table_top": 40,
+    "lives": 2,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 1,
+        "text": "Entramos en la recta final.",
+        "act": "wait"
+      },
+      {
+        "player": 2,
+        "text": "Yo tengo algo pegadísimo. Dejadme ir a mí.",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "Perfecto, te espero.",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 41. La mesa en 40. Coordinación perfecta, me han dado paso. Juego el 41. El jugador 1 dijo \"Entramos en la recta final [esperó].\" y esperó. El jugador 2 dijo \"Yo tengo algo pegadísimo. Dejadme ir a m...\" y esperó.",
+    "msg": "Gracias, echo.",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      43,
+      46
+    ],
+    "table_top": 41,
+    "lives": 2,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 2,
+        "text": "Gracias, echo.",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 43. La mesa en 41. El jugador 2 jugó el 41 [jugó su carta]. Ahora podría haber el 42 antes del 43. Espero un momento.",
+    "msg": "voy en breve",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      43,
+      46
+    ],
+    "table_top": 42,
+    "lives": 2,
+    "stars": 0,
+    "messages": [],
+    "think": "Tengo el 43. La mesa en 42. Distancia de 1. Soy el siguiente.",
+    "msg": "y ahora va la mía",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      5,
+      20,
+      35
+    ],
+    "table_top": 4,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 2,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 5, 20 y 35. La mesa en 4. El jugador 2 va ya y jugó su carta [jugó su carta], probablemente tiene el 4 o acaba de jugarlo. Mi mínima es el 5, distancia de 1. Soy el siguiente.",
+    "msg": "yo también pronto",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      17,
+      32,
+      47
+    ],
+    "table_top": 4,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 2,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 17, 32 y 47. La mesa en 4. El jugador 2 va ya y jugó su carta [jugó su carta]. Mi mínima es el 17, distancia de 13. Hay bastante espacio. Espero.",
+    "msg": "yo bastante después",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      9,
+      24,
+      39
+    ],
+    "table_top": 7,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 9, 24 y 39. La mesa en 7. Mi mínima es el 9, distancia de 2. Podría haber el 8. Aviso que voy pronto.",
+    "msg": "voy en breve",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      26,
+      41,
+      50
+    ],
+    "table_top": 20,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 26, 41 y 50. La mesa en 20. Mi mínima es el 26, distancia de 6. Podría haber 21-25 antes. Aviso que tengo algo ahora.",
+    "msg": "tengo algo justo ahora",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      5,
+      20,
+      35
+    ],
+    "table_top": 3,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 5, 20 y 35. La mesa en 3. Mi mínima es el 5, distancia de 2. Podría haber el 4. Aviso que voy casi.",
+    "msg": "casi",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      17,
+      32,
+      47
+    ],
+    "table_top": 3,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 17, 32 y 47. La mesa en 3. Mi mínima es el 17, distancia de 14. Mucho espacio. Espero.",
+    "msg": "bastante después",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      12
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 1,
+        "text": "voy muy pronto",
+        "act": "wait"
+      },
+      {
+        "player": 3,
+        "text": "soy yo el primero",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 12. El jugador 3 es el primero y el 1 va muy pronto [esperó] [jugó su carta]. Probablemente tienen 1-6. Yo con el 12 espero a que pasen los bajos.",
+    "msg": "espero a que pasen los primeros",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      12
+    ],
+    "table_top": 10,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "casi",
+        "act": "wait"
+      },
+      {
+        "player": 2,
+        "text": "y yo justo después",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 12. La mesa en 10. El jugador 0 dice casi (tenía 11) y el 2 dice que va justo después (tení [esperó]a algo entre 1 [jugó su carta]1-14) [esperó]. Yo con el 12... si el 0 tiene el 11 y el 2 tiene algo entre 12-14, podría haber conflicto. Con el 12 yo podría ser el siguiente después del 11.",
+    "msg": "y yo el siguiente",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      8
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 8. Con mesa en 0, es bastante baja. Podría haber 1-7 antes. Aviso que soy de los primeros y espero brevemente.",
+    "msg": "soy de los primeros",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      15
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 2,
+        "text": "soy de los primeros",
+        "act": "wait"
+      },
+      {
+        "player": 0,
+        "text": "yo también pronto",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 15. Los jugadores 2 y 0 van de los primeros [esperó]. Yo con el 15 voy después de ellos. No es urgente, espero. El jugador 2 dijo \"soy de los primeros\" y esperó.",
+    "msg": "yo después de ti",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      37
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 2,
+        "text": "soy de los primeros",
+        "act": "wait"
+      },
+      {
+        "player": 0,
+        "text": "yo también pronto",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 37. Los jugadores 2 y 0 van de los primeros [esperó]. Yo con el 37 voy mucho después. El jugador 2 dijo \"soy de los primeros\" y esperó.",
+    "msg": "yo después de los dos",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      16
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 1,
+        "text": "voy muy pronto",
+        "act": "wait"
+      },
+      {
+        "player": 3,
+        "text": "soy yo el primero",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 16. El jugador 3 es el primero (carta muy baja [jugó su carta], <5 probablemente) y el 1 va muy pronto (5-10) [esperó]. Yo con el 16 voy después de ambos. Espero.",
+    "msg": "espero a que pasen los primeros",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      18
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 1,
+        "text": "yo también pronto",
+        "act": "wait"
+      },
+      {
+        "player": 3,
+        "text": "yo después de ti",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 18. Los jugadores 1 y 3 se están coordinando para los primeros turnos. Yo con el 18 probablemente voy después de ellos. Espero. El jugador 1 dijo \"yo también pronto\" y esperó. El jugador 3 dijo \"yo después de ti\" y esperó.",
+    "msg": "espero a que pasen los bajos",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      21
+    ],
+    "table_top": 20,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "tengo algo ahora",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 21. La mesa en 20. El jugador 0 también dice que tiene algo ahora [esperó]. Podría ser el 21 o el 22. Si tiene el 22, yo con el 21 soy el siguiente. Si tiene el 21... colisión. Con 2 vidas, aviso que yo también tengo algo ahora para coordinar.",
+    "msg": "creo que soy yo también",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      31
+    ],
+    "table_top": 20,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "tengo algo ahora",
+        "act": "wait"
+      },
+      {
+        "player": 3,
+        "text": "creo que soy yo también",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 31. La mesa en 20. Los jugadores 0 y 3 parecen tener ambos algo entre 21-25. Yo con el 31 voy después de que se resuelva ese posible conflicto. El jugador 0 dijo \"tengo algo ahora\" y esperó. El jugador 3 dijo \"creo que soy yo también\" y esperó.",
+    "msg": "yo un poco más tarde",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      23
+    ],
+    "table_top": 15,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "voy en breve",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "yo después",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 23. La mesa en 15. El jugador 0 va en breve (probablemente 16-20) y el 1 va después (20-25) [esperó]. Yo con el 23 podría ir antes o después del jugador 1 según sus cartas exactas [esperó]. Aviso que creo que voy yo.",
+    "msg": "creo que voy yo ahora",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      38
+    ],
+    "table_top": 15,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "voy en breve",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "yo después",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 38. La mesa en 15. El jugador 0 va pronto [esperó], el 1 después. Yo con el 38 voy mucho más tarde. Espero. El jugador 1 dijo \"yo después\" y esperó.",
+    "msg": "espero tranquilo",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      31
+    ],
+    "table_top": 25,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 31. La mesa en 25. Distancia de 6. Podría haber 26-30 antes. Aviso que voy pronto en la segunda mitad.",
+    "msg": "voy pronto",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      49
+    ],
+    "table_top": 25,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 49. La mesa en 25. Distancia de 24. Muchísimo recorrido por delante. Espero hasta casi el final.",
+    "msg": "casi al final",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      28
+    ],
+    "table_top": 25,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "voy pronto",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 28. La mesa en 25. El jugador 0 dice que va pronto [esperó], probablemente 26-28. Yo con el 28 podría estar en la misma zona. Aviso que yo también voy enseguida.",
+    "msg": "yo también enseguida",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      45
+    ],
+    "table_top": 25,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "voy pronto",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 45. El jugador 0 va pronto desde el 25 [esperó]. Yo con el 45 voy mucho después.",
+    "msg": "yo mucho después",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      30
+    ],
+    "table_top": 28,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 30. La mesa en 28. Distancia de 2. Podría haber el 29. Voy muy pronto.",
+    "msg": "voy ya",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      48
+    ],
+    "table_top": 28,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 48. La mesa en 28. Distancia de 20. Quedo casi al final.",
+    "msg": "casi al final",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      40
+    ],
+    "table_top": 35,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 40. La mesa en 35. Distancia de 5. Podría haber 36-39 antes. Aviso que voy pronto.",
+    "msg": "voy ya",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      49
+    ],
+    "table_top": 35,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 49. La mesa en 35. Distancia de 14. Quedo casi al final.",
+    "msg": "casi al final",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      36
+    ],
+    "table_top": 35,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 36. La mesa en 35. El jugador 0 va ya y jugó su carta [jugó su carta]. Si tiene el 35 o ya lo jugó, yo con el 36 soy el siguiente inmediato. Aviso.",
+    "msg": "yo también pronto",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      50
+    ],
+    "table_top": 35,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 50. El jugador 0 va ya y jugó su carta desde el 35 [jugó su carta]. Yo soy el último.",
+    "msg": "yo el último",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      43
+    ],
+    "table_top": 30,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 43. La mesa en 30. Distancia de 13. Podría haber varios antes. Aviso que voy en un rato.",
+    "msg": "voy pronto",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      50
+    ],
+    "table_top": 30,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 50. El último posible. La mesa en 30. Distancia de 20. Soy el último sin duda.",
+    "msg": "seré el último",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      32
+    ],
+    "table_top": 30,
+    "lives": 2,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 2,
+        "text": "voy pronto",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 32. La mesa en 30. El jugador 2 va pronto (probablemente tiene el 31) [esperó]. Yo con el 32 voy justo después.",
+    "msg": "yo también pronto",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      46
+    ],
+    "table_top": 30,
+    "lives": 2,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 2,
+        "text": "voy pronto",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 46. El jugador 2 va pronto desde el 30 [esperó]. Yo con el 46 voy al final.",
+    "msg": "yo al final",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      35
+    ],
+    "table_top": 30,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 3,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 35. El jugador 3 va ya y jugó su carta desde el 30 [jugó su carta]. Si jugó el 31 o similar, yo con el 35 voy después. Aviso que voy justo después.",
+    "msg": "yo justo después",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      49
+    ],
+    "table_top": 30,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 3,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 49. El jugador 3 va desde el 30 [jugó su carta]. Yo con el 49 voy casi al final.",
+    "msg": "yo casi al final",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      34
+    ],
+    "table_top": 30,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 34. La mesa en 30. Distancia de 4. Hay espacio para 31-33. Voy pronto.",
+    "msg": "voy ya",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      50
+    ],
+    "table_top": 30,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 50. Mesa en 30. Soy el último absoluto del mazo.",
+    "msg": "yo el último",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      6
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 1,
+        "text": "tengo prisa",
+        "act": "wait"
+      },
+      {
+        "player": 2,
+        "text": "yo también pronto",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 6. Los jugadores 1 y 2 dicen que van pronto [esperó]. Yo con el 6 podría ir antes que ambos, o podría ser el tercero. Dado que el 6 es bastante bajo y hay dos señales de urgencia, probablemente tengo algo similar o podría ser el primero. El jugador 1 dijo \"tengo prisa\" y esperó.",
+    "msg": "puede que yo también sea de los primeros",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      33
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 1,
+        "text": "tengo prisa",
+        "act": "wait"
+      },
+      {
+        "player": 2,
+        "text": "yo también pronto",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 33. Los jugadores 1 y 2 van de los primeros [esperó]. Yo con el 33 voy bastante después de ellos. El jugador 1 dijo \"tengo prisa\" y esperó.",
+    "msg": "yo bastante después de vosotros",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      10
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 1,
+        "text": "tengo prisa",
+        "act": "wait"
+      },
+      {
+        "player": 2,
+        "text": "yo también pronto",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 10. Dos jugadores van antes. Yo con el 10 podría ser el tercero si ellos tienen cartas muy bajas (1-9). Espero a que jueguen los dos primeros. El jugador 1 dijo \"tengo prisa\" y esperó. El jugador 2 dijo \"yo también pronto\" y esperó.",
+    "msg": "yo después de los dos",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      4
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "urgente",
+        "act": "play"
+      },
+      {
+        "player": 1,
+        "text": "puede que yo también sea pronto",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 4. El jugador 0 dice urgente (carta muy baja [jugó su carta], 1-3), el 1 también va pronto (4-8 quizás). Yo con el 4 podría ir antes que el jugador 1 o al mismo tiempo [esperó]. Aviso que podría ser yo antes que el urgente del 1.",
+    "msg": "puede que yo antes que el urgente",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      39
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "urgente",
+        "act": "play"
+      },
+      {
+        "player": 1,
+        "text": "puede que yo también sea pronto",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 39. Los jugadores 0 y 1 van de los primeros [esperó]. Yo con el 39 espero tranquilo. El jugador 0 dijo \"urgente\" y jugó su carta.",
+    "msg": "yo espero tranquilo",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      23
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "urgente",
+        "act": "play"
+      },
+      {
+        "player": 1,
+        "text": "puede que yo también sea pronto",
+        "act": "wait"
+      },
+      {
+        "player": 3,
+        "text": "yo bastante después de vosotros",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 23. El 0 tiene urgencia extrema [jugó su carta], el 1 va pronto [esperó], el 3 espera (confirmado: esperó) [esperó]. Yo con el 23 voy en la zona media, después de los dos primeros.",
+    "msg": "yo después de los bajos",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      19
+    ],
+    "table_top": 18,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 3,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 19. La mesa en 18. El jugador 3 acaba de jugar (probablemente el 18) [jugó su carta]. Mi carta el 19 es la siguiente con distancia 1. Voy ahora.",
+    "msg": "yo también ahora",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      47
+    ],
+    "table_top": 18,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 3,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 47. La mesa en 18. El 3 va ya y jugó su carta [jugó su carta]. Yo con el 47 espero mucho.",
+    "msg": "yo mucho más tarde",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      20
+    ],
+    "table_top": 18,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 20. La mesa en 18. Distancia de 2. Puede haber el 19. Aviso que voy pronto.",
+    "msg": "voy ya",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      36
+    ],
+    "table_top": 18,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 36. La mesa en 18. Distancia de 18. Hay bastante espacio. Espero.",
+    "msg": "espero un poco",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      25
+    ],
+    "table_top": 22,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 25. La mesa en 22. El jugador 0 va ya y jugó su carta (probablemente tiene el 23 o 24) [jugó su carta]. Yo con el 25 voy justo después.",
+    "msg": "yo justo después",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      47
+    ],
+    "table_top": 22,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 47. El jugador 0 va desde el 22 [jugó su carta]. Yo con el 47 espero mucho.",
+    "msg": "yo mucho después",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      24
+    ],
+    "table_top": 24,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 24. La mesa está en 24 exactamente. Esto significa que mi carta ya debería haber salido o hay un error. Si mi carta es el 24 y la mesa ya está en 24, puede que yo mismo lo acabe de jugar. En el juego esto no debería ocurrir. Lo más probable es un estado inconsistente. Espero.",
+    "msg": "",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      26
+    ],
+    "table_top": 24,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "voy ya",
+        "act": "play"
+      },
+      {
+        "player": 1,
+        "text": "yo también ahora",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 26. La mesa en 24. Los jugadores 0 y 1 están jugando [esperó]. Yo con el 26 voy el siguiente después de ellos si están en 25. El jugador 0 dijo \"voy ya\" y jugó su carta.",
+    "msg": "y yo el siguiente",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      50
+    ],
+    "table_top": 24,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "voy ya",
+        "act": "play"
+      },
+      {
+        "player": 1,
+        "text": "yo también ahora",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 50. Los jugadores 0 y 1 van desde el 24 [esperó]. Yo soy el último. El jugador 0 dijo \"voy ya\" y jugó su carta.",
+    "msg": "yo el último",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      12,
+      45,
+      49
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 12, 45 y 49. Mi mínima es el 12 (24% del mazo). Podría haber varias cartas antes. Aviso que tengo algo para pronto pero no urgente.",
+    "msg": "Tengo algo bajito, pero no para echar ya. ¿Alguien tiene algo de salida?",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      8,
+      28
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "Tengo algo bajito, pero no para echar ya. ¿Alguien tiene algo de salida?",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 8 y el 28. El jugador 0 tiene algo bajito pero no de una cifra (>9 probablemente) — [esperó]y esperó—. Yo con el 8 podría ser el primero. Aviso.",
+    "msg": "Yo tengo algo bastante bajo, creo que podría empezar yo.",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      12,
+      45,
+      49
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "Tengo algo bajito, pero no para echar ya.",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "Yo tengo algo bastante bajo, creo que podría empezar yo.",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 12. El jugador 1 dice que podría empezar [esperó], tiene algo menor que yo. Le confirmo que mi baja no es de una cifra para que sepa que puede ir. El jugador 0 dijo \"Tengo algo bajito, pero no para echar ya...\" y esperó.",
+    "msg": "Vale, mi carta baja no es de una cifra. Echa tú, jugador 1.",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      8,
+      28
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "Tengo algo bajito, pero no para echar ya.",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "Yo tengo algo bastante bajo.",
+        "act": "wait"
+      },
+      {
+        "player": 0,
+        "text": "Vale, mi carta baja no es de una cifra. Echa tú.",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 8. El jugador 0 confirma que su mínima es mayor que 9 [esperó]. Yo con el 8 soy el primero. Tiro. El jugador 1 dijo \"Yo tengo algo bastante bajo.\" y esperó.",
+    "msg": "Perfecto, tiro la mía.",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      12,
+      45,
+      49
+    ],
+    "table_top": 8,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 12, 45 y 49. La mesa está en 8. Mi mínima es el 12, distancia de 4. Podría haber 9, 10 o 11 antes. Aviso que voy pronto.",
+    "msg": "Esa me viene al pelo, tiro yo ahora mismo.",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      34,
+      42
+    ],
+    "table_top": 22,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 2,
+        "text": "Estoy a una distancia moderada.",
+        "act": "wait"
+      },
+      {
+        "player": 3,
+        "text": "Yo también a distancia media. ¿Tu distancia es de más o menos de 10?",
+        "act": "wait"
+      },
+      {
+        "player": 2,
+        "text": "La mía está casi a 10 más algunos.",
+        "act": "wait"
+      },
+      {
+        "player": 3,
+        "text": "La mía es algo más. Tira tú primero.",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 34. La mesa en 22. Mi distancia es 12. La coordinación me indica que voy primero porque mi distancia es menor que la del jugador 3 (que tiene más de 12) [esperó]. Juego. El jugador 2 dijo \"Estoy a una distancia moderada [esperó].\" y esperó.",
+    "msg": "entendido, tiro con cuidado",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      37,
+      46
+    ],
+    "table_top": 34,
+    "lives": 2,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 37 y el 46. La mesa en 34. Mi mínima es el 37, distancia de 3. El jugador 2 jugó el 34 según la coordinación anterior. Ahora me toca a mí.",
+    "msg": "uf, menos mal que coordinamos. Tiro la mía que estaba pegada.",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      20
+    ],
+    "table_top": 18,
+    "lives": 2,
+    "stars": 0,
+    "messages": [],
+    "think": "Tengo el 20. La mesa en 18. Distancia de 2. Podría haber el 19. Con 2 vidas y sin estrellas, aviso antes de tirar para que si alguien tiene el 19 lo haga primero.",
+    "msg": "voy ya pero ojo si alguien tiene algo entre 18 y 20",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      22
+    ],
+    "table_top": 20,
+    "lives": 1,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 0,
+        "text": "tengo algo cerca, con mucho cuidado",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 22. La mesa en 20. El jugador 0 avisa que tiene algo cerca [esperó]. Si tiene el 21, va antes que yo. Si tiene el 22... no puede ser, cada carta es única. Si tiene algo entre 21-25, puede que yo vaya después. Con última vida, aviso que yo también tengo algo ahora.",
+    "msg": "yo también tengo algo ahora",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      45
+    ],
+    "table_top": 20,
+    "lives": 1,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 0,
+        "text": "tengo algo cerca, con mucho cuidado",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 45. Última vida. El jugador 0 tiene algo cerca del 20 [esperó]. Yo espero lejos.",
+    "msg": "tranquilos, yo espero lejos",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      17
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "la mía es alta",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "la mía es baja pero no como para empezar yo",
+        "act": "wait"
+      },
+      {
+        "player": 2,
+        "text": "mi carta está por la mitad",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 17. El jugador 0 tiene carta alta [esperó], el 2 está en la mitad (25 aprox) [esperó], el 1 tiene carta baja pero no la más baja [esperó]. Con el 17, yo podría ser el que tenga la carta más baja del grupo. Si el 1 tiene entre 10-15 y yo tengo 17, él va primero. Si tiene entre 18-24, yo voy primero.",
+    "msg": "yo también tengo algo bastante bajo",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      19
+    ],
+    "table_top": 0,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "la mía es alta",
+        "act": "wait"
+      },
+      {
+        "player": 1,
+        "text": "la mía es baja pero no como para empezar yo",
+        "act": "wait"
+      },
+      {
+        "player": 2,
+        "text": "mi carta está por la mitad",
+        "act": "wait"
+      },
+      {
+        "player": 3,
+        "text": "yo también tengo algo bastante bajo",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 19. El 3 también tiene algo bastante bajo. Hay dos jugadores con cartas bajas (1 y 3). El 0 es alto, el 2 es medio. Si el 1 tiene algo entre 10-14 y el 3 tiene 15-18 [esperó], el 3 va antes que yo. Espero a ver cómo se desarrolla. El jugador 0 dijo \"la mía es alta\" y esperó. El jugador 2 dijo \"mi carta está por la mitad\" y esperó.",
+    "msg": "espero a ver quién va primero de los bajos",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      26
+    ],
+    "table_top": 20,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 1,
+        "text": "algo para después",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 26. La mesa en 20. El jugador 1 tiene algo para después (carta alta) [esperó]. Nadie más ha dicho nada. Si nadie más tiene algo entre 21 y 26, soy yo el siguiente. Aviso.",
+    "msg": "yo tengo algo justo ahora",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      13
+    ],
+    "table_top": 10,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 2,
+        "text": "voy en breve",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 13. La mesa en 10. El jugador 2 va en breve [esperó]. Si tiene el 11 o 12, yo con el 13 voy después. Podría decir mi número pero las reglas lo prohíben. Aviso solo que yo también voy pronto.",
+    "msg": "yo también voy pronto",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      37
+    ],
+    "table_top": 10,
+    "lives": 2,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 2,
+        "text": "voy en breve",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 37. La mesa en 10. El jugador 2 va pronto [esperó]. Yo con el 37 voy mucho después. Con 2 vidas y sin estrellas, más razón para esperar con calma.",
+    "msg": "yo espero",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      16
+    ],
+    "table_top": 12,
+    "lives": 2,
+    "stars": 0,
+    "messages": [],
+    "think": "Tengo el 16. La mesa en 12. Distancia de 4. Podría haber 13, 14 o 15 antes. Con 2 vidas y sin estrellas, aviso pero con cuidado. No puedo arriesgarme a tirar si alguien tiene algo entre 12 y 16.",
+    "msg": "voy pronto",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      16
+    ],
+    "table_top": 14,
+    "lives": 2,
+    "stars": 0,
+    "messages": [],
+    "think": "Tengo el 16. La mesa en 14. Distancia de 2. Podría haber el 15. La probabilidad es menor ahora. Aviso y tiro.",
+    "msg": "voy ya",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      16
+    ],
+    "table_top": 15,
+    "lives": 2,
+    "stars": 0,
+    "messages": [],
+    "think": "Tengo el 16. La mesa en 15. Distancia de 1. Soy el siguiente sin duda. Juego.",
+    "msg": "",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      1
+    ],
+    "table_top": 0,
+    "lives": 2,
+    "stars": 0,
+    "messages": [],
+    "think": "Tengo el 1. Aunque solo queden 2 vidas y no haya estrellas, el 1 es el primero absoluto. No hay riesgo. Juego sin decir nada.",
+    "msg": "",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      50
+    ],
+    "table_top": 0,
+    "lives": 2,
+    "stars": 0,
+    "messages": [],
+    "think": "Tengo el 50. Queda todo el juego por delante. Señalo que soy el último para que el equipo sepa que no tienen que coordinar conmigo hasta el final.",
+    "msg": "yo el último, sin duda",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      26
+    ],
+    "table_top": 0,
+    "lives": 2,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 2,
+        "text": "yo el último, sin duda",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 26. El jugador 2 tiene la carta más alta (50 probablemente) [esperó]. Yo con el 26 estoy en zona media. Señalo mi posición.",
+    "msg": "zona media",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      3
+    ],
+    "table_top": 0,
+    "lives": 2,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 2,
+        "text": "yo el último, sin duda",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 3. El jugador 2 espera al final [esperó]. Yo con el 3 soy de los primeros. Con 2 vidas y sin estrellas, aviso y juego.",
+    "msg": "soy el primero",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      11
+    ],
+    "table_top": 0,
+    "lives": 2,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 2,
+        "text": "yo el último, sin duda",
+        "act": "wait"
+      },
+      {
+        "player": 0,
+        "text": "soy el primero",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 11. El jugador 0 es el primero [esperó], el 2 es el último. Yo con el 11 voy después del 0. Espero a que juegue. El jugador 2 dijo \"yo el último, sin duda\" y esperó.",
+    "msg": "yo después del primero",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      9
+    ],
+    "table_top": 7,
+    "lives": 2,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 9. La mesa en 7. Distancia de 2. Podría haber el 8. Con 2 vidas, aviso antes de tirar.",
+    "msg": "voy ya",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      33
+    ],
+    "table_top": 7,
+    "lives": 2,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 33. La mesa en 7. Distancia de 26. Mucho espacio. Espero.",
+    "msg": "espero bastante",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      10
+    ],
+    "table_top": 7,
+    "lives": 2,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 2,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 10. La mesa en 7. El jugador 2 va ya y jugó su carta [jugó su carta], probablemente tiene el 8 o 9. Yo con el 10 voy justo después. Con 2 vidas y sin estrellas, aviso con cuidado.",
+    "msg": "yo justo después, ojo",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      26
+    ],
+    "table_top": 7,
+    "lives": 2,
+    "stars": 0,
+    "messages": [
+      {
+        "player": 2,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 26. El jugador 2 va ya y jugó su carta [jugó su carta]. Yo con el 26 voy bastante después.",
+    "msg": "yo mucho después",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      14
+    ],
+    "table_top": 12,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 14. La mesa en 12. Distancia de 2. Podría haber el 13. Aviso y juego.",
+    "msg": "voy pronto",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      39
+    ],
+    "table_top": 12,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 39. La mesa en 12. Distancia de 27. Mucho espacio.",
+    "msg": "bastante después",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      15
+    ],
+    "table_top": 12,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 1,
+        "text": "voy pronto",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 15. El jugador 1 va pronto [esperó]. Si tiene el 13 o 14, yo con el 15 voy justo después. Aviso.",
+    "msg": "yo también pronto",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      44
+    ],
+    "table_top": 12,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 1,
+        "text": "voy pronto",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 44. El jugador 1 va pronto [esperó]. Yo con el 44 espero mucho.",
+    "msg": "yo mucho después",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      15
+    ],
+    "table_top": 13,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 15. La mesa en 13. Distancia de 2. Podría haber el 14. Aviso que voy pronto.",
+    "msg": "voy ya",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      37
+    ],
+    "table_top": 13,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 37. La mesa en 13. Distancia de 24. Mucho espacio.",
+    "msg": "bastante después",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      16
+    ],
+    "table_top": 13,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 2,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 16. El jugador 2 va ya y jugó su carta (probablemente el 14 o 15) [jugó su carta]. Yo con el 16 voy justo después.",
+    "msg": "yo justo después",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      44
+    ],
+    "table_top": 13,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 2,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 44. El jugador 2 va desde el 13 [jugó su carta]. Yo espero mucho.",
+    "msg": "yo mucho después",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      17
+    ],
+    "table_top": 13,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 2,
+        "text": "voy ya",
+        "act": "play"
+      },
+      {
+        "player": 0,
+        "text": "yo justo después",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 17. La mesa en 13. El jugador 2 tiene el 14 (o ya lo jugó) y el 0 tiene el 15 o 16 —y jugó [jugó su carta]su carta—. Yo con el 17 voy el siguiente después de ellos.",
+    "msg": "y yo el siguiente",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      43
+    ],
+    "table_top": 13,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 2,
+        "text": "voy ya",
+        "act": "play"
+      },
+      {
+        "player": 0,
+        "text": "yo justo después",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 43. Los jugadores 2 y 0 están jugando en el rango 14-17 [esperó]. Yo con el 43 espero mucho. El jugador 2 dijo \"voy ya\" y jugó su carta.",
+    "msg": "yo lejos todavía",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      6
+    ],
+    "table_top": 4,
+    "lives": 1,
+    "stars": 0,
+    "messages": [],
+    "think": "Tengo el 6. La mesa en 4. Distancia de 2. Podría haber el 5. ÚLTIMA VIDA. El riesgo es alto pero la distancia es solo 2. Si nadie tiene el 5, soy yo el siguiente. Aviso con máxima precaución.",
+    "msg": "voy justo ahora, cuidado",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      29
+    ],
+    "table_top": 4,
+    "lives": 1,
+    "stars": 0,
+    "messages": [],
+    "think": "Tengo el 29. Última vida. Mesa en 4. Distancia de 25. No me arriesgo para nada.",
+    "msg": "espero mucho",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      11
+    ],
+    "table_top": 9,
+    "lives": 1,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 3,
+        "text": "voy justo ahora, cuidado",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 11. La mesa en 9. El jugador 3 va ya y jugó su carta (probablemente tiene el 10) [jugó su carta]. Yo con el 11 voy justo después. Última vida, aviso con cuidado.",
+    "msg": "y yo justo después, ojo",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      40
+    ],
+    "table_top": 9,
+    "lives": 1,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 3,
+        "text": "voy justo ahora, cuidado",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 40. Última vida. El jugador 3 va desde el 9 [jugó su carta]. Yo espero muy lejos.",
+    "msg": "yo espero lejos",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      3
+    ],
+    "table_top": 1,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 3. La mesa en 1. Distancia de 2. Podría haber el 2. Aviso y juego.",
+    "msg": "voy ya",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      22
+    ],
+    "table_top": 1,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 22. La mesa en 1. Distancia de 21. Hay mucho espacio.",
+    "msg": "espero bastante",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      4
+    ],
+    "table_top": 1,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 4. El jugador 0 va ya y jugó su carta (tiene el 2 o 3) [jugó su carta]. Yo con el 4 voy justo después.",
+    "msg": "yo después de ti",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      37
+    ],
+    "table_top": 1,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 37. El jugador 0 va desde el 1 [jugó su carta]. Yo con el 37 voy mucho después.",
+    "msg": "yo mucho después",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      25
+    ],
+    "table_top": 20,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 25. La mesa en 20. Distancia de 5. Podría haber 21-24. Aviso y juego.",
+    "msg": "voy ya",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      43
+    ],
+    "table_top": 20,
+    "lives": 3,
+    "stars": 1,
+    "messages": [],
+    "think": "Tengo el 43. La mesa en 20. Distancia de 23. Mucho camino.",
+    "msg": "después de un rato",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      22
+    ],
+    "table_top": 20,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 3,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 22. La mesa en 20. El jugador 3 va ya y jugó su carta (tiene el 21 probablemente) [jugó su carta]. Yo con el 22 voy justo después.",
+    "msg": "yo también ahora",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      46
+    ],
+    "table_top": 20,
+    "lives": 2,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 3,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 46. El jugador 3 va desde el 20 [jugó su carta]. Yo espero lejos.",
+    "msg": "yo lejos",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      27
+    ],
+    "table_top": 24,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 27. La mesa en 24. El jugador 0 va ya y jugó su carta (tiene el 25 o 26) [jugó su carta]. Yo con el 27 voy justo después.",
+    "msg": "yo también ahora",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      46
+    ],
+    "table_top": 24,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "voy ya",
+        "act": "play"
+      }
+    ],
+    "think": "Tengo el 46. El jugador 0 va desde el 24 [jugó su carta]. Yo espero mucho.",
+    "msg": "yo mucho después",
+    "act": "wait"
+  },
+  {
+    "my_hand": [
+      28
+    ],
+    "table_top": 24,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "voy ya",
+        "act": "play"
+      },
+      {
+        "player": 1,
+        "text": "yo también ahora",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 28. Los jugadores 0 y 1 están jugando en el rango 25-27 [esperó]. Yo con el 28 voy el siguiente después de ellos. El jugador 0 dijo \"voy ya\" y jugó su carta.",
+    "msg": "y yo el siguiente",
+    "act": "play"
+  },
+  {
+    "my_hand": [
+      50
+    ],
+    "table_top": 24,
+    "lives": 3,
+    "stars": 1,
+    "messages": [
+      {
+        "player": 0,
+        "text": "voy ya",
+        "act": "play"
+      },
+      {
+        "player": 1,
+        "text": "yo también ahora",
+        "act": "wait"
+      }
+    ],
+    "think": "Tengo el 50. Los jugadores 0 y 1 van desde el 24 [esperó]. Yo soy el último. El jugador 0 dijo \"voy ya\" y jugó su carta.",
+    "msg": "yo el último",
+    "act": "wait"
+  }
+]

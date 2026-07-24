@@ -3,9 +3,7 @@ agents.py — Agentes LLM para The Mind
 Usa modelos pequeños (~1-3B) con LoRA para caber en 4GB VRAM o 12GB RAM.
 """
 import json
-import ast
 import re
-import copy
 import logging
 from typing import Optional
 import torch
@@ -16,41 +14,36 @@ logger = logging.getLogger(__name__)
 
 # ─── Prompt base del agente ───────────────────────────────────────────────────
 
-SYSTEM_PROMPT = """Eres un jugador del juego The Mind. Las reglas son:
-- Hay cartas numeradas del 1 al 50 repartidas entre los jugadores.
-- NO puedes decir el número de tu carta directamente.
-- Debes colaborar con los demás para jugar las cartas en orden ascendente.
-- Cada turno puedes enviar un mensaje corto a los demás Y/O jugar una carta.
-- Juega tu carta cuando creas que es el momento adecuado.
-- Si juegas fuera de orden, el equipo pierde una vida.
-- Responde SIEMPRE con JSON válido, sin texto adicional antes ni después
+SYSTEM_PROMPT = """Eres un jugador del juego The Mind. Reglas:
+- Cartas del 1 al 50. No puedes decir tu número.
+- El equipo debe jugar todas las cartas en orden ascendente.
+- Responde SIEMPRE con JSON válido, sin texto adicional antes ni después."""
 
-Tu objetivo: coordinaros para jugar TODAS las cartas en orden sin errores.
-Habla libremente pero SIN revelar tu número exacto ni ninguna operación matemática que lo descifre."""
+# Prompt simplificado: menos campos = menos tokens = menos errores de formato.
+# Se elimina "reasoning" del JSON (se mueve fuera) para reducir la longitud generada.
+ACTION_PROMPT = """Estado:
+- Mis cartas: {my_hand}
+- Última carta en mesa: {table_top}
+- Vidas: {lives} | Estrellas: {stars}
+- Mensajes (jugador [acción que tomó]: texto): {messages}
 
-ACTION_PROMPT = """Estado actual:
-- Tus cartas: {my_hand}
-- Última carta jugada: {table_top}
-- Cartas jugadas: {played_cards}
-- Vidas restantes: {lives}
-- Estrellas: {stars}
-- Mensajes recientes: {messages}
+Responde SOLO con este JSON (sin markdown, sin texto extra):
+{{"msg": "texto corto o vacío", "act": "wait"}}
 
-Responde SIEMPRE en este formato JSON exacto con tu mensaje, acción y razonamiento que hayas deducido y no pongas nada más:
-{{
-  "message": "mensaje corto para los demás (o vacío si no tienes nada que decir)",
-  "action": "wait" o "play" o "star",
-  "reasoning": "por qué tomas esta decisión (interno, no lo ven)"
-}}
+Donde "act" puede ser: "wait" (esperar), "play" (jugar mi carta más baja), "star" (usar estrella).
+No incluyas tu número en "msg". Ejemplo válido: {{"msg": "creo que es pronto", "act": "wait"}}"""
 
-Reglas: no digas tu número. Puedes expresar urgencia, duda, confianza, o lo que veas conveniente siempere
-que no digas expresamente tu número ni nada que pueda llevar a una deducción exacta del mismo."""
 
+ACT_LABEL = {"play": "jugó", "wait": "esperó", "star": "usó estrella"}
 
 def format_messages(messages: list) -> str:
     if not messages:
         return "(ninguno)"
-    return " | ".join([f"J{m['player']}: {m['text']}" for m in messages[-10:]])
+    parts = []
+    for m in messages[-5:]:
+        act_str = ACT_LABEL.get(m.get("act", ""), "?")
+        parts.append(f"J{m['player']} [{act_str}]: {m['text']}")
+    return " | ".join(parts)
 
 
 # ─── Clase agente ─────────────────────────────────────────────────────────────
@@ -68,7 +61,7 @@ class TheMindAgent:
         tokenizer=None,
         lora_config=None,
         device: str = "cpu",
-        max_new_tokens: int = 512,
+        max_new_tokens: int = 200,
     ):
         self.player_id = player_id
         self.model = model
@@ -82,22 +75,30 @@ class TheMindAgent:
         action_text = ACTION_PROMPT.format(
             my_hand=obs["my_hand"],
             table_top=obs["table_top"],
-            played_cards=obs["played_cards"],
             lives=obs["lives"],
             stars=obs["stars"],
             messages=format_messages(obs.get("messages", [])),
         )
-        # Formato chat
-        if hasattr(self.tokenizer, "apply_chat_template"):
-            messages = [
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user",   "content": action_text},
-            ]
-            prompt = self.tokenizer.apply_chat_template(
-                messages, tokenize=False, add_generation_prompt=True
-            )
+        # Formato chat — robusto ante transformers 5.x y tokenizers sin chat_template
+        has_template = (
+            hasattr(self.tokenizer, "apply_chat_template")
+            and getattr(self.tokenizer, "chat_template", None) is not None
+        )
+        if has_template:
+            try:
+                chat_messages = [
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user",   "content": action_text},
+                ]
+                prompt = self.tokenizer.apply_chat_template(
+                    chat_messages, tokenize=False, add_generation_prompt=True
+                )
+            except (ValueError, KeyError):
+                # Fallback si el template falla en runtime
+                prompt = f"<|im_start|>system\n{SYSTEM_PROMPT}<|im_end|>\n<|im_start|>user\n{action_text}<|im_end|>\n<|im_start|>assistant\n"
         else:
-            prompt = f"{SYSTEM_PROMPT}\n\n{action_text}\n\nRespuesta:"
+            # Sin chat template: formato Qwen/LLaMA manual
+            prompt = f"<|im_start|>system\n{SYSTEM_PROMPT}<|im_end|>\n<|im_start|>user\n{action_text}<|im_end|>\n<|im_start|>assistant\n"
         return prompt
 
     @torch.no_grad()
@@ -107,44 +108,38 @@ class TheMindAgent:
         Devuelve dict con 'message', 'action', 'reasoning', 'raw_output'.
         """
         prompt = self.build_prompt(obs)
+
+        # Forzar que la generación empiece con '{' para guiar al modelo hacia JSON
+        prompt_with_start = prompt + '{"'
+
         inputs = self.tokenizer(
-            prompt,
+            prompt_with_start,
             return_tensors="pt",
             truncation=True,
-            max_length=2048,
+            max_length=1024,
         ).to(self.device)
-
-        # Evita el warning de transformers cuando el modelo trae max_length
-        # en su generation_config y además usamos max_new_tokens.
-        gen_config = None
-        if hasattr(self.model, "generation_config") and self.model.generation_config is not None:
-            gen_config = copy.deepcopy(self.model.generation_config)
-            gen_config.max_length = None
 
         with torch.inference_mode():
             output_ids = self.model.generate(
                 **inputs,
-                generation_config=gen_config,
-                max_new_tokens=self.max_new_tokens,
+                max_new_tokens=300,      # razonador: <think>...</think> + JSON
                 do_sample=True,
-                repetition_penalty=1.2,
-                temperature=0.3,    # 0.3 para más determinismo, 0.7 para más diversidad
+                temperature=0.7,
                 top_p=0.9,
                 pad_token_id=self.tokenizer.eos_token_id,
+                eos_token_id=self.tokenizer.eos_token_id,
             )
 
-        # Decodificar solo la parte generada
         input_len = inputs["input_ids"].shape[1]
-        generated = self.tokenizer.decode(
+        # El modelo generó a partir de '{"', así que lo reincorporamos
+        generated = '{"' + self.tokenizer.decode(
             output_ids[0][input_len:], skip_special_tokens=True
         )
-        # print(f"Agente {self.player_id} generó: {generated}")
 
         parsed = self._parse_output(generated, obs)
         parsed["raw_output"] = generated
         parsed["prompt"] = prompt
 
-        # Guardar para RL
         self.generation_history.append({
             "prompt": prompt,
             "output": generated,
@@ -154,86 +149,105 @@ class TheMindAgent:
         return parsed
 
     def _parse_output(self, text: str, obs: dict) -> dict:
-        """Parsea la salida JSON del modelo. Fallback a heurísticas."""
-        # Intentar parsear JSON válido aunque venga con texto extra alrededor.
-        # print(text)
-        data = self._extract_structured_output(text)
-        # print(data)
-        if data is not None:
-            action = str(data.get("action", "wait")).strip().lower()
+        """
+        Parsea la salida del modelo con múltiples estrategias en cascada.
+        Acepta formato razonador DeepSeek-R1: <think>...</think>{"msg":...,"act":...}
+        También acepta claves largas ('message'/'action') como fallback.
+        """
+        # Extraer bloque <think> si existe (guardarlo para logging/análisis)
+        think_content = ""
+        if "<think>" in text:
+            think_match = re.search(r'<think>(.*?)</think>', text, re.DOTALL)
+            if think_match:
+                think_content = think_match.group(1).strip()
+                # Quitar el bloque think del texto para parsear el JSON limpio
+                text = text[text.find("</think>") + len("</think>"):].strip()
+        # ── Estrategia 1: buscar JSON completo (con llaves balanceadas) ──────
+        # Más robusto que re.search(r'\{.*?\}') que falla con JSON anidado o truncado
+        for start in [i for i, c in enumerate(text) if c == '{']:
+            depth = 0
+            for end, c in enumerate(text[start:], start):
+                if c == '{':
+                    depth += 1
+                elif c == '}':
+                    depth -= 1
+                    if depth == 0:
+                        candidate = text[start:end + 1]
+                        try:
+                            data = json.loads(candidate)
+                            return self._extract_fields(data)
+                        except json.JSONDecodeError:
+                            break  # probar siguiente '{'
+
+        # ── Estrategia 2: el JSON está truncado — intentar repararlo ─────────
+        # Buscamos un '{' y añadimos '}' al final para cerrarlo
+        json_start = text.find('{')
+        if json_start != -1:
+            truncated = text[json_start:].rstrip()
+            # Añadir comillas y llave de cierre si falta
+            if not truncated.endswith('}'):
+                # Cerrar strings abiertas y el objeto
+                if truncated.count('"') % 2 == 1:
+                    truncated += '"'
+                truncated += '}'
+            try:
+                data = json.loads(truncated)
+                logger.debug(f"Agente {self.player_id}: JSON reparado exitosamente.")
+                return self._extract_fields(data)
+            except json.JSONDecodeError:
+                pass
+
+        # ── Estrategia 3: extracción por regex de campos individuales ─────────
+        # Funciona cuando el modelo genera algo como: msg": "espera", "act": "play"
+        msg_match = re.search(r'(?:"msg"|"message")\s*:\s*"([^"]*)"', text)
+        act_match = re.search(r'(?:"act"|"action")\s*:\s*"(\w+)"', text)
+
+        if act_match:
+            action = act_match.group(1).lower()
             if action not in ("wait", "play", "star"):
                 action = "wait"
-            return {
-                "message": str(data.get("message", ""))[:200],
-                "action": action,
-                "reasoning": str(data.get("reasoning", ""))[:300],
-            }
+            message = msg_match.group(1) if msg_match else ""
+            logger.debug(f"Agente {self.player_id}: extraído por regex.")
+            return {"message": message, "action": action, "reasoning": ""}
 
-        # Fallback heurístico
-        logger.debug(
-            "Agente %s: no pudo parsear JSON. Usando heuristica.",
-            self.player_id,
+        # ── Estrategia 4: heurística semántica pura ───────────────────────────
+        logger.warning(
+            f"Agente {self.player_id}: no pudo parsear JSON. "
+            f"Salida cruda (primeros 120 chars): {repr(text[:120])}"
         )
+        text_lower = text.lower()
         action = "wait"
-        if "play" in text.lower() or "juego" in text.lower() or "jugar" in text.lower():
+        if any(w in text_lower for w in ["play", "juego", "jugar", "juega", '"play"']):
             action = "play"
+        elif any(w in text_lower for w in ["star", "estrella", '"star"']):
+            action = "star"
 
-        # Extraer mensaje (primera línea razonable)
-        lines = [l.strip() for l in text.split("\n") if l.strip()]
-        message = lines[0][:100] if lines else ""
+        lines = [l.strip() for l in text.split("\n") if l.strip() and not l.startswith('{')]
+        message = lines[0][:80] if lines else ""
+
+        return {"message": message, "action": action, "reasoning": text[:150]}
+
+    def _extract_fields(self, data: dict) -> dict:
+        """Extrae los campos del dict parseado, aceptando claves cortas y largas."""
+        # Clave corta 'act' tiene prioridad, luego 'action'
+        action = data.get("act", data.get("action", "wait"))
+        if isinstance(action, str):
+            action = action.strip().lower()
+        if action not in ("wait", "play", "star"):
+            action = "wait"
+
+        # Clave corta 'msg' tiene prioridad, luego 'message'
+        message = data.get("msg", data.get("message", ""))
+        if not isinstance(message, str):
+            message = str(message)
+
+        reasoning = data.get("reasoning", data.get("reason", ""))
 
         return {
-            "message":   message,
+            "message":   message[:150],
             "action":    action,
-            "reasoning": text[:200],
+            "reasoning": reasoning[:200],
         }
-
-    def _extract_structured_output(self, text: str) -> Optional[dict]:
-        """Extrae un dict estilo JSON del texto generado por el modelo."""
-        # 1) Bloques markdown tipo ```json ... ```
-        fenced = re.search(r"```(?:json)?\s*(\{[\s\S]*?\})\s*```", text, re.IGNORECASE)
-        if fenced:
-            parsed = self._parse_dict_like(fenced.group(1))
-            if parsed is not None:
-                return parsed
-
-        # 2) JSONDecoder sobre cualquier subcadena que empiece con '{'
-        decoder = json.JSONDecoder()
-        for idx, ch in enumerate(text):
-            if ch != "{":
-                continue
-            snippet = text[idx:]
-            try:
-                parsed, _ = decoder.raw_decode(snippet)
-            except json.JSONDecodeError:
-                continue
-            if isinstance(parsed, dict):
-                return parsed
-
-        # 3) Fallback por regex + parser tolerante
-        json_match = re.search(r"\{[\s\S]*\}", text)
-        if json_match:
-            return self._parse_dict_like(json_match.group())
-
-        return None
-
-    def _parse_dict_like(self, text: str) -> Optional[dict]:
-        """Parsea texto de diccionario usando JSON y luego ast.literal_eval."""
-        try:
-            data = json.loads(text)
-            if isinstance(data, dict):
-                return data
-        except json.JSONDecodeError:
-            pass
-
-        try:
-            data = ast.literal_eval(text)
-            if isinstance(data, dict):
-                return data
-        except (SyntaxError, ValueError):
-            pass
-
-        return None
 
     def get_card_to_play(self, obs: dict) -> Optional[int]:
         """Devuelve la carta mínima de la mano (la única válida a jugar)."""
@@ -297,9 +311,6 @@ def load_base_model(
         load_kwargs["attn_implementation"] = "flash_attention_2"
 
     model = AutoModelForCausalLM.from_pretrained(model_name, **load_kwargs)
-    model.config.use_cache = False
-    if hasattr(model, "generation_config"):
-        model.generation_config.use_cache = False
     model.eval()
 
     logger.info(f"Modelo cargado. Parámetros: {model.num_parameters():,}")
@@ -310,7 +321,7 @@ def create_lora_config(
     r: int = 8,
     lora_alpha: int = 32,
     target_modules: list = None,
-    lora_dropout: float = 0.1,
+    lora_dropout: float = 0.0,  # 0 obligatorio: dropout in-place rompe autograd en training
 ) -> LoraConfig:
     """
     Configuración LoRA para fine-tuning eficiente.
@@ -350,9 +361,6 @@ def create_agents(
 
     if shared_lora:
         peft_model = get_peft_model(model, lora_config)
-        peft_model.config.use_cache = False
-        if hasattr(peft_model, "generation_config"):
-            peft_model.generation_config.use_cache = False
         peft_model.print_trainable_parameters()
         agents = [
             TheMindAgent(i, model=peft_model, tokenizer=tokenizer, device=device)
@@ -363,9 +371,6 @@ def create_agents(
         agents = []
         for i in range(num_players):
             peft_model = get_peft_model(model, lora_config)
-            peft_model.config.use_cache = False
-            if hasattr(peft_model, "generation_config"):
-                peft_model.generation_config.use_cache = False
             agents.append(
                 TheMindAgent(i, model=peft_model, tokenizer=tokenizer, device=device)
             )
